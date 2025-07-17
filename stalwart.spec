@@ -4,7 +4,7 @@ Release: alt1
 
 Summary: Secure, scalable mail & collaboration server (IMAP, JMAP, SMTP, CalDAV, CardDAV, WebDAV)
 Summary(ru_RU.UTF-8): Защищённый, масштабируемый почтовый и коллаборационный сервер с поддержкой IMAP, JMAP, SMTP, CalDAV, CardDAV, WebDAV.
-License: AGPL-3.0-only AND SEL
+License: AGPL-3.0-only
 Group:   Development/Tools
 URL:     https://stalw.art
 
@@ -12,7 +12,6 @@ Source0: %name-%version.tar
 
 BuildRequires:  rust-cargo /proc
 BuildRequires:  rust >= 1.70
-BuildRequires:  gcc
 BuildRequires:  pkgconfig
 BuildRequires:  clang-devel
 BuildRequires:  libclang19
