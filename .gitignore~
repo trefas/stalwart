@@ -1,8 +1,0 @@
-/target
-.vscode
-.idea
-*.failed
-*_failed
-run.sh
-_ignore
-.DS_Store
