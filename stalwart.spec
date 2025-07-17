@@ -34,7 +34,7 @@ Stalwart — защищённый, масштабируемый почтовый
 export CC=clang
 export CXX=clang++
 export LIBCLANG_PATH=/usr/lib/llvm-19.1/lib64
-cargo build --release --no-default-features --features "sqlite postgres mysql rocks elastic s3 redis azure nats"
+cargo build --release --no-default-features --features "sqlite postgres mysql elastic s3 redis azure nats"
 cargo build --release -p stalwart-cli
 
 %install
