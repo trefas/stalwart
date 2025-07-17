@@ -29,6 +29,9 @@ Stalwart — защищённый, масштабируемый почтовый
 %setup -q
 
 %build
+export CC=clang
+export CXX=clang++
+export LIBCLANG_PATH=/usr/lib/llvm-19.1/lib64
 cargo build --release --no-default-features --features "sqlite postgres mysql rocks elastic s3 redis azure nats"
 cargo build --release -p stalwart-cli
 
