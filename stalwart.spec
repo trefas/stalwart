@@ -74,5 +74,5 @@ getent passwd stalwart >/dev/null || useradd -r -g stalwart -d /opt/stalwart -s 
 /lib/systemd/system/stalwart-mail.service
 
 %changelog
-* Thu Jul 17 2025 Andrey Semenow <trefas@altlinux.org> 0.13.0-1
+* Thu Jul 17 2025 Andrey Semenow <trefas@altlinux.org> %version-%release
 - First release for ALT Linux
