@@ -14,7 +14,7 @@ BuildRequires:  rust-cargo /proc
 BuildRequires:  rust >= 1.70
 BuildRequires:  pkgconfig
 BuildRequires:  clang
-BuildRequires:  libclang19
+BuildRequires:  libclang19-devel
 BuildRequires:  zlib-devel
 Requires(pre):  shadow-utils
 Requires(post): systemd
