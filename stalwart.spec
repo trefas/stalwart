@@ -75,4 +75,4 @@ getent passwd stalwart >/dev/null || useradd -r -g stalwart -d /opt/stalwart -s 
 
 %changelog
 * Thu Jul 17 2025 Andrey Semenow <trefas@altlinux.org> 0.13.0-1
-- Первый релиз для Альт Линукс
+- First release for ALT Linux
