@@ -70,4 +70,4 @@ enable = true
 
 [authentication.fallback-admin]
 user = "admin"
-secret = "%{env:ADMIN_SECRET}%"
+secret = "admin"
