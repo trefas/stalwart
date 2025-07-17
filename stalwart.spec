@@ -13,6 +13,7 @@ Source0: %name-%version.tar
 BuildRequires:  rust-cargo /proc
 BuildRequires:  rust >= 1.70
 BuildRequires:  pkgconfig
+BuildRequires:  clang
 BuildRequires:  libclang19
 BuildRequires:  zlib-devel
 Requires(pre):  shadow-utils
