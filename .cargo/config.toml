@@ -1,0 +1,18 @@
+[source.crates-io]
+replace-with = "vendored-sources"
+
+[source.vendored-sources]
+directory = "vendor"
+
+[term]
+verbose = true
+quiet = false
+
+[install]
+root = "%buildroot%_prefix"
+
+[build]
+rustflags = ["-Copt-level=3", "-Cdebuginfo=1"]
+ 
+[profile.release]
+strip = false

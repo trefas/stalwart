@@ -1,0 +1,2 @@
+spec: .rpm/stalwart.spec
+tar: . name=@name@-@version@
