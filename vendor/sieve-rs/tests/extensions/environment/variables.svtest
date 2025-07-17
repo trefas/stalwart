@@ -1,0 +1,17 @@
+require "vnd.stalwart.testsuite";
+require "variables";
+require "relational";
+
+test "default_mailbox" {
+	if not string "${env.vnd.stalwart.default_mailbox}" "INBOX" {
+		test_fail "The env.vnd.stalwart.default_mailbox variable returned invalid value: `${env.vnd.stalwart.default_mailbox}'";
+	}
+}
+
+test "username" {
+	set :length "userlen" "${env.vnd.stalwart.username}";
+	if not string :value "ge" "${userlen}" "1" {
+		test_fail "The env.vnd.stalwart.username variable is empty or does not exist";
+	}
+}
+

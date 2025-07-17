@@ -1,0 +1,919 @@
+[
+  [
+    0,
+    {
+      "Require": [
+        "Enotify",
+        "FileInto",
+        "Variables",
+        "Envelope"
+      ]
+    }
+  ],
+  [
+    1,
+    {
+      "Test": {
+        "ValidNotifyMethod": {
+          "notification_uris": [
+            {
+              "Text": "mailto:"
+            },
+            {
+              "Text": "http://gw.example.net/notify?test"
+            }
+          ],
+          "is_not": true
+        }
+      }
+    }
+  ],
+  [
+    2,
+    {
+      "Jz": 4
+    }
+  ],
+  [
+    3,
+    "Stop"
+  ],
+  [
+    4,
+    {
+      "Test": {
+        "NotifyMethodCapability": {
+          "comparator": "AsciiCaseMap",
+          "match_type": "Is",
+          "notification_uri": {
+            "Text": "xmpp:tim@example.com?message;subject=SIEVE"
+          },
+          "notification_capability": {
+            "Text": "Online"
+          },
+          "key_list": [
+            {
+              "Text": "yes"
+            }
+          ],
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    5,
+    {
+      "Jz": 8
+    }
+  ],
+  [
+    6,
+    {
+      "Notify": {
+        "from": null,
+        "importance": {
+          "Number": {
+            "Integer": 1
+          }
+        },
+        "options": [],
+        "message": {
+          "Text": "You got mail"
+        },
+        "fcc": null,
+        "method": {
+          "Text": "xmpp:tim@example.com?message;subject=SIEVE"
+        }
+      }
+    }
+  ],
+  [
+    7,
+    {
+      "Jmp": 9
+    }
+  ],
+  [
+    8,
+    {
+      "Notify": {
+        "from": null,
+        "importance": null,
+        "options": [],
+        "message": {
+          "Text": "You got mail"
+        },
+        "fcc": null,
+        "method": {
+          "Text": "tel:+14085551212"
+        }
+      }
+    }
+  ],
+  [
+    9,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "from"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "boss@example.org"
+            }
+          ],
+          "match_type": "Contains",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    10,
+    {
+      "Jz": 13
+    }
+  ],
+  [
+    11,
+    {
+      "Notify": {
+        "from": null,
+        "importance": {
+          "Number": {
+            "Integer": 1
+          }
+        },
+        "options": [],
+        "message": {
+          "Text": "This is probably very important"
+        },
+        "fcc": null,
+        "method": {
+          "Text": "mailto:alm@example.com"
+        }
+      }
+    }
+  ],
+  [
+    12,
+    "Stop"
+  ],
+  [
+    13,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "to"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "sievemailinglist@example.org"
+            }
+          ],
+          "match_type": "Contains",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    14,
+    {
+      "Jz": 26
+    }
+  ],
+  [
+    15,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "Subject"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "*"
+            }
+          ],
+          "match_type": {
+            "Matches": 2
+          },
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    16,
+    {
+      "Jz": 19
+    }
+  ],
+  [
+    17,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 0
+        },
+        "value": {
+          "Variable": {
+            "Match": 1
+          }
+        }
+      }
+    }
+  ],
+  [
+    18,
+    {
+      "Clear": {
+        "local_vars_idx": 0,
+        "local_vars_num": 1,
+        "match_vars": 0
+      }
+    }
+  ],
+  [
+    19,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "From"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "*"
+            }
+          ],
+          "match_type": {
+            "Matches": 2
+          },
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    20,
+    {
+      "Jz": 23
+    }
+  ],
+  [
+    21,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 0
+        },
+        "value": {
+          "Variable": {
+            "Match": 1
+          }
+        }
+      }
+    }
+  ],
+  [
+    22,
+    {
+      "Clear": {
+        "local_vars_idx": 0,
+        "local_vars_num": 1,
+        "match_vars": 0
+      }
+    }
+  ],
+  [
+    23,
+    {
+      "Notify": {
+        "from": null,
+        "importance": {
+          "Number": {
+            "Integer": 3
+          }
+        },
+        "options": [],
+        "message": {
+          "List": [
+            {
+              "Text": "[SIEVE] "
+            },
+            {
+              "Text": ": "
+            }
+          ]
+        },
+        "fcc": null,
+        "method": {
+          "Text": "mailto:alm@example.com"
+        }
+      }
+    }
+  ],
+  [
+    24,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "INBOX.sieve"
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    25,
+    {
+      "Clear": {
+        "local_vars_idx": 0,
+        "local_vars_num": 0,
+        "match_vars": 2
+      }
+    }
+  ],
+  [
+    26,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "from"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "*@*.example.org"
+            }
+          ],
+          "match_type": {
+            "Matches": 0
+          },
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    27,
+    {
+      "Jz": 42
+    }
+  ],
+  [
+    28,
+    {
+      "Test": {
+        "Envelope": {
+          "envelope_list": [
+            "From"
+          ],
+          "key_list": [
+            {
+              "Text": "*"
+            }
+          ],
+          "address_part": "All",
+          "match_type": {
+            "Matches": 2
+          },
+          "comparator": "AsciiCaseMap",
+          "zone": null,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    29,
+    {
+      "Jz": 32
+    }
+  ],
+  [
+    30,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 0
+        },
+        "value": {
+          "List": [
+            {
+              "Text": " [really: "
+            },
+            {
+              "Variable": {
+                "Match": 1
+              }
+            },
+            {
+              "Text": "]"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  [
+    31,
+    {
+      "Clear": {
+        "local_vars_idx": 0,
+        "local_vars_num": 1,
+        "match_vars": 0
+      }
+    }
+  ],
+  [
+    32,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "Subject"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "*"
+            }
+          ],
+          "match_type": {
+            "Matches": 2
+          },
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    33,
+    {
+      "Jz": 36
+    }
+  ],
+  [
+    34,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 0
+        },
+        "value": {
+          "Variable": {
+            "Match": 1
+          }
+        }
+      }
+    }
+  ],
+  [
+    35,
+    {
+      "Clear": {
+        "local_vars_idx": 0,
+        "local_vars_num": 1,
+        "match_vars": 0
+      }
+    }
+  ],
+  [
+    36,
+    {
+      "Test": {
+        "Address": {
+          "header_list": [
+            {
+              "Text": "from"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "*"
+            }
+          ],
+          "address_part": "All",
+          "match_type": {
+            "Matches": 2
+          },
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    37,
+    {
+      "Jz": 40
+    }
+  ],
+  [
+    38,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 0
+        },
+        "value": {
+          "Variable": {
+            "Match": 1
+          }
+        }
+      }
+    }
+  ],
+  [
+    39,
+    {
+      "Clear": {
+        "local_vars_idx": 0,
+        "local_vars_num": 1,
+        "match_vars": 0
+      }
+    }
+  ],
+  [
+    40,
+    {
+      "Notify": {
+        "from": null,
+        "importance": null,
+        "options": [],
+        "message": {
+          "Text": ": "
+        },
+        "fcc": null,
+        "method": {
+          "Text": "mailto:alm@example.com"
+        }
+      }
+    }
+  ],
+  [
+    41,
+    {
+      "Clear": {
+        "local_vars_idx": 0,
+        "local_vars_num": 0,
+        "match_vars": 2
+      }
+    }
+  ],
+  [
+    42,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 0
+        },
+        "value": {
+          "Text": "xmpp:tim@example.com?message;subject=SIEVE;body=You%20got%20mail"
+        }
+      }
+    }
+  ],
+  [
+    43,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "subject"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "Your dog"
+            }
+          ],
+          "match_type": "Contains",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    44,
+    {
+      "Jz": 46
+    }
+  ],
+  [
+    45,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 0
+        },
+        "value": {
+          "Text": "tel:+14085551212"
+        }
+      }
+    }
+  ],
+  [
+    46,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "to"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "sievemailinglist@example.org"
+            }
+          ],
+          "match_type": "Contains",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    47,
+    {
+      "Jz": 49
+    }
+  ],
+  [
+    48,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 0
+        },
+        "value": {
+          "Text": ""
+        }
+      }
+    }
+  ],
+  [
+    49,
+    {
+      "Test": {
+        "String": {
+          "match_type": "Is",
+          "comparator": "AsciiCaseMap",
+          "source": [
+            {
+              "Variable": {
+                "Local": 0
+              }
+            }
+          ],
+          "key_list": [
+            {
+              "Text": ""
+            }
+          ],
+          "is_not": true
+        }
+      }
+    }
+  ],
+  [
+    50,
+    {
+      "Jz": 52
+    }
+  ],
+  [
+    51,
+    {
+      "Notify": {
+        "from": null,
+        "importance": null,
+        "options": [],
+        "message": null,
+        "fcc": null,
+        "method": {
+          "Variable": {
+            "Local": 0
+          }
+        }
+      }
+    }
+  ],
+  [
+    52,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "from"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "boss@example.org"
+            }
+          ],
+          "match_type": "Contains",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    53,
+    {
+      "Jz": 62
+    }
+  ],
+  [
+    54,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "Subject"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "*"
+            }
+          ],
+          "match_type": {
+            "Matches": 2
+          },
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    55,
+    {
+      "Jz": 58
+    }
+  ],
+  [
+    56,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 1
+        },
+        "value": {
+          "Variable": {
+            "Match": 1
+          }
+        }
+      }
+    }
+  ],
+  [
+    57,
+    {
+      "Clear": {
+        "local_vars_idx": 1,
+        "local_vars_num": 1,
+        "match_vars": 0
+      }
+    }
+  ],
+  [
+    58,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "subject"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "FYI:"
+            }
+          ],
+          "match_type": "Contains",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": true
+        }
+      }
+    }
+  ],
+  [
+    59,
+    {
+      "Jz": 61
+    }
+  ],
+  [
+    60,
+    {
+      "Notify": {
+        "from": null,
+        "importance": {
+          "Number": {
+            "Integer": 1
+          }
+        },
+        "options": [],
+        "message": {
+          "Text": "BOSS: "
+        },
+        "fcc": null,
+        "method": {
+          "Text": "tel:+14085551212"
+        }
+      }
+    }
+  ],
+  [
+    61,
+    {
+      "Clear": {
+        "local_vars_idx": 0,
+        "local_vars_num": 0,
+        "match_vars": 2
+      }
+    }
+  ]
+]

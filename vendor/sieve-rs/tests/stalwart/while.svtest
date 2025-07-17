@@ -1,0 +1,268 @@
+require "vnd.stalwart.testsuite";
+require "vnd.stalwart.while";
+require "vnd.stalwart.expressions";
+require "relational";
+require "body";
+require "foreverypart";
+require "variables";
+require "extracttext";
+
+test_set "message" text:
+From: "Cosmo Kramer" <kramer@kramerica.com>
+From: George Constanza <george@yankees.com>
+From: Art Vandelay <art@vandelay.com> (Vandelay Industries)
+To: "Colleagues": "James Smythe" <james@vandelay.com>; Friends:
+    jane@example.com, =?UTF-8?Q?John_Sm=C3=AEth?= <john@example.com>;
+Date: Sat, 20 Nov 2021 14:22:01 -0800
+X-Test:  this   is  a test
+   with plenty of whitespace
+Subject: Is 
+ dinner ready?
+
+Hi.
+
+We lost the game. 
+Are you hungry yet?
+
+Joe.
+.
+;
+
+
+test "While - body" {
+    set "body" "";
+    set "did_iterate" "0";
+
+    foreverypart {
+        extracttext "body";
+        break;
+    }
+
+    let "line_num" "0";
+    let "body_lines" "lines(body)";
+
+    while "line_num < count(body_lines)" {
+        let "line" "body_lines[line_num]";
+        let "line_num" "line_num + 1";
+
+        if eval "line_num == 1" {
+            if not string :is "${line}" "Hi." {
+                test_fail "${line_num} = '${line}'";
+            }
+        } elsif eval "line_num == 2" {
+            if not string :is "${line}" "" {
+                test_fail "${line_num} = '${line}' ('')";
+            }
+        } elsif eval "line_num == 3" {
+            if not string :is "${line}" "We lost the game. " {
+                test_fail "${line_num} = '${line}' ('We lost the game. ')";
+            }
+        } elsif eval "line_num == 4" {
+            let "did_iterate" "1";
+            break;
+        } else {
+            test_fail "break failed ${line_num} = '${line}'";
+        }
+    }
+
+    if eval "!did_iterate" {
+        test_fail "test #1 did not iterate";
+    }
+
+    let "did_iterate" "0";
+
+    foreverypart :name "main" {
+        extracttext "sub_body";
+
+        let "line_num" "0";
+        let "body_lines" "lines(sub_body)";
+        while "line_num < count(body_lines)" {
+            let "line" "body_lines[line_num]";
+            let "line_num" "line_num + 1";
+
+            if eval "line_num == 1" {
+                if not string :is "${line}" "Hi." {
+                    test_fail "${line_num} = '${line}'";
+                }
+            } elsif eval "line_num == 2" {
+                if not string :is "${line}" "" {
+                    test_fail "${line_num} = '${line}'";
+                }
+            } elsif eval "line_num == 3" {
+                if not string :is "${line}" "We lost the game. " {
+                    test_fail "${line_num} = '${line}'";
+                }
+            } elsif eval "line_num == 4" {
+                let "did_iterate" "1";
+                break :name "main";
+            } else {
+                test_fail "break failed ${line_num} = '${line}'";
+            }
+        }        
+    }
+
+    if eval "!did_iterate" {
+        test_fail "test #2 did not iterate";
+    }
+}
+
+test "While - headers" {
+
+    let "did_iterate" "0";
+
+    let "line_num" "0";
+    let "header_lines" "header.to[*].addr[*]";
+    while "line_num < count(header_lines)" {
+        let "line" "header_lines[line_num]";
+        let "line_num" "line_num + 1";
+
+        if eval "line_num == 1" {
+            if not string :is "${line}" "james@vandelay.com" {
+                test_fail "${line_num} = '${line}'";
+            }
+        } elsif eval "line_num == 2" {
+            if not string :is "${line}" "jane@example.com" {
+                test_fail "${line_num} = '${line}'";
+            }
+        } elsif eval "line_num == 3" {
+            let "did_iterate" "1";
+            if not string :is "${line}" "john@example.com" {
+                test_fail "${line_num} = '${line}'";
+            }
+        } else {
+            test_fail "invalid ${line_num} = '${line}'";
+        }
+    }
+
+    if eval "!did_iterate" {
+        test_fail "test did not iterate";
+    }
+
+}
+
+test "While - all headers" {
+
+    let "did_iterate" "0";
+
+    let "line_num" "0";
+    let "header_lines" "header.*.raw";
+    while "line_num < count(header_lines)" {
+        let "line" "header_lines[line_num]";
+        let "line_num" "line_num + 1";
+        if allof(eval "line_num == 6", not string :is "${line}" "X-Test: this is a test with plenty of whitespace") {
+            test_fail "${line} ${line_num}";
+            let "did_iterate" "1";
+        }
+        let "did_iterate" "line_num";
+    }
+    if eval "did_iterate != 7" {
+        test_fail "test did not iterate ${did_iterate}";
+    }
+
+    let "did_iterate" "0";
+    let "line_num" "0";
+    let "header_lines" "header.*.text";
+    while "line_num < count(header_lines)" {
+        let "line" "header_lines[line_num]";
+        let "line_num" "line_num + 1";
+        if allof(eval "line_num == 4", not string :is "${line}" "To: \"Colleagues\": \"James Smythe\" <james@vandelay.com>; Friends: jane@example.com, John Smîth <john@example.com>;") {
+            test_fail "${line} ${line_num}";
+        }
+        let "did_iterate" "line_num";
+    }
+    if eval "did_iterate != 7" {
+        test_fail "test did not iterate ${did_iterate}";
+    }
+}
+
+test "While - nested with array access" {
+    let "result" "";
+    let "x" "['a', 'b', 'c']";
+    let "y" "['0', '1', '2']";
+
+    let "i" "0";
+    while "i < 3" {
+        let "j" "0";
+        while "j < 3" {
+            if eval "len(result) > 0" {
+                let "result" "result + ','";
+            }
+            let "result" "result + x[i] + y[j]";
+            let "j" "j + 1";
+        }
+        let "i" "i + 1";
+    }
+
+    if eval "result != 'a0,a1,a2,b0,b1,b2,c0,c1,c2'" {
+        test_fail "Nested iteration failed: ${result}";
+    }
+}
+
+
+test "While - body variable" {
+    let "body_empty_lines" "0";
+
+    let "line_num" "0";
+    let "body_lines" "lines(body.text)";
+    while "line_num < count(body_lines)" {
+        let "line" "body_lines[line_num]";
+        let "line_num" "line_num + 1";
+
+        if eval "trim(line) == ''" {
+            let "body_empty_lines" "body_empty_lines + 1";
+        }
+    }
+
+    if eval "line_num > 4 && body_empty_lines / line_num >= 0.8 && body_empty_lines / line_num <= 0.9" {
+        test_fail "bad ratio";
+    }
+
+    if eval "line_num != 6 || body_empty_lines != 2" {
+        test_fail "got ${line_num} and ${body_empty_lines}";
+    }
+}
+
+
+test "While - continue" {
+    let "i" "0";
+    let "j" "0";
+
+    while "i < 5" {
+        let "i" "i+1";
+        let "j" "j+1";
+    }
+
+    if eval "i != j" {
+        test_fail "i != j";
+    }
+
+    let "i" "0";
+    let "j" "0";
+
+    while "i < 5" {
+        let "i" "i+1";
+        continue;
+        let "j" "j+1";
+    }
+
+    if eval "j != 0 || i == 0" {
+        test_fail "while continue failed";
+    }
+
+        let "i" "0";
+    let "j" "0";
+
+    while "i < 5" {
+        let "i" "i+1";
+        if eval "true" {
+            continue;
+        }
+        let "j" "j+1";
+    }
+
+    if eval "j != 0 || i == 0" {
+        test_fail "while continue failed";
+    }
+
+}
+

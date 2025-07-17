@@ -1,0 +1,41 @@
+[
+  [
+    0,
+    {
+      "Require": [
+        "Copy",
+        "FileInto"
+      ]
+    }
+  ],
+  [
+    1,
+    {
+      "FileInto": {
+        "copy": true,
+        "create": false,
+        "folder": {
+          "Text": "incoming"
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    2,
+    {
+      "Redirect": {
+        "copy": true,
+        "address": {
+          "Text": "test"
+        },
+        "notify": "Default",
+        "return_of_content": "Default",
+        "by_time": "None",
+        "list": false
+      }
+    }
+  ]
+]

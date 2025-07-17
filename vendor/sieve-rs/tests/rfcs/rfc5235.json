@@ -1,0 +1,510 @@
+[
+  [
+    0,
+    {
+      "Require": [
+        "SpamTestPlus",
+        "SpamTest",
+        "FileInto",
+        "Relational",
+        {
+          "Comparator": "AsciiNumeric"
+        },
+        "VirusTest"
+      ]
+    }
+  ],
+  [
+    1,
+    {
+      "Test": {
+        "SpamTest": {
+          "value": {
+            "Number": {
+              "Integer": 0
+            }
+          },
+          "match_type": {
+            "Value": "Eq"
+          },
+          "comparator": "AsciiNumeric",
+          "percent": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    2,
+    {
+      "Jz": 5
+    }
+  ],
+  [
+    3,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "INBOX.unclassified"
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    4,
+    {
+      "Jmp": 8
+    }
+  ],
+  [
+    5,
+    {
+      "Test": {
+        "SpamTest": {
+          "value": {
+            "Number": {
+              "Integer": 3
+            }
+          },
+          "match_type": {
+            "Value": "Ge"
+          },
+          "comparator": "AsciiNumeric",
+          "percent": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    6,
+    {
+      "Jz": 8
+    }
+  ],
+  [
+    7,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "INBOX.spam-trap"
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    8,
+    {
+      "Test": {
+        "SpamTest": {
+          "value": {
+            "Number": {
+              "Integer": 0
+            }
+          },
+          "match_type": {
+            "Value": "Eq"
+          },
+          "comparator": "AsciiNumeric",
+          "percent": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    9,
+    {
+      "Jz": 12
+    }
+  ],
+  [
+    10,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "INBOX.unclassified"
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    11,
+    {
+      "Jmp": 21
+    }
+  ],
+  [
+    12,
+    {
+      "Test": {
+        "SpamTest": {
+          "value": {
+            "Number": {
+              "Integer": 0
+            }
+          },
+          "match_type": {
+            "Value": "Eq"
+          },
+          "comparator": "AsciiNumeric",
+          "percent": true,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    13,
+    {
+      "Jz": 16
+    }
+  ],
+  [
+    14,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "INBOX.not-spam"
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    15,
+    {
+      "Jmp": 21
+    }
+  ],
+  [
+    16,
+    {
+      "Test": {
+        "SpamTest": {
+          "value": {
+            "Number": {
+              "Integer": 37
+            }
+          },
+          "match_type": {
+            "Value": "Lt"
+          },
+          "comparator": "AsciiNumeric",
+          "percent": true,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    17,
+    {
+      "Jz": 20
+    }
+  ],
+  [
+    18,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "INBOX.spam-trap"
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    19,
+    {
+      "Jmp": 21
+    }
+  ],
+  [
+    20,
+    "Discard"
+  ],
+  [
+    21,
+    {
+      "Test": {
+        "SpamTest": {
+          "value": {
+            "Number": {
+              "Integer": 0
+            }
+          },
+          "match_type": {
+            "Count": "Eq"
+          },
+          "comparator": "AsciiNumeric",
+          "percent": true,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    22,
+    {
+      "Jz": 25
+    }
+  ],
+  [
+    23,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "INBOX.unclassified"
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    24,
+    {
+      "Jmp": 34
+    }
+  ],
+  [
+    25,
+    {
+      "Test": {
+        "SpamTest": {
+          "value": {
+            "Number": {
+              "Integer": 0
+            }
+          },
+          "match_type": {
+            "Value": "Eq"
+          },
+          "comparator": "AsciiNumeric",
+          "percent": true,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    26,
+    {
+      "Jz": 29
+    }
+  ],
+  [
+    27,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "INBOX.not-spam"
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    28,
+    {
+      "Jmp": 34
+    }
+  ],
+  [
+    29,
+    {
+      "Test": {
+        "SpamTest": {
+          "value": {
+            "Number": {
+              "Integer": 37
+            }
+          },
+          "match_type": {
+            "Value": "Lt"
+          },
+          "comparator": "AsciiNumeric",
+          "percent": true,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    30,
+    {
+      "Jz": 33
+    }
+  ],
+  [
+    31,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "INBOX.spam-trap"
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    32,
+    {
+      "Jmp": 34
+    }
+  ],
+  [
+    33,
+    "Discard"
+  ],
+  [
+    34,
+    {
+      "Test": {
+        "VirusTest": {
+          "value": {
+            "Number": {
+              "Integer": 0
+            }
+          },
+          "match_type": {
+            "Value": "Eq"
+          },
+          "comparator": "AsciiNumeric",
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    35,
+    {
+      "Jz": 37
+    }
+  ],
+  [
+    36,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "INBOX.unclassified"
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    37,
+    {
+      "Test": {
+        "VirusTest": {
+          "value": {
+            "Number": {
+              "Integer": 4
+            }
+          },
+          "match_type": {
+            "Value": "Eq"
+          },
+          "comparator": "AsciiNumeric",
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    38,
+    {
+      "Jz": 41
+    }
+  ],
+  [
+    39,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "INBOX.quarantine"
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    40,
+    {
+      "Jmp": 44
+    }
+  ],
+  [
+    41,
+    {
+      "Test": {
+        "VirusTest": {
+          "value": {
+            "Number": {
+              "Integer": 5
+            }
+          },
+          "match_type": {
+            "Value": "Eq"
+          },
+          "comparator": "AsciiNumeric",
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    42,
+    {
+      "Jz": 44
+    }
+  ],
+  [
+    43,
+    "Discard"
+  ]
+]

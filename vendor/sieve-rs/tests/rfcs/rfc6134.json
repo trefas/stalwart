@@ -1,0 +1,622 @@
+[
+  [
+    0,
+    {
+      "Require": [
+        "Envelope",
+        "ExtLists",
+        "FileInto",
+        "SpamTest",
+        "ForEveryPart",
+        "Mime",
+        "Enclose",
+        "Relational",
+        {
+          "Comparator": "AsciiNumeric"
+        },
+        "Variables",
+        "Date",
+        "Enotify",
+        "SubAddress",
+        "Index",
+        "Reject"
+      ]
+    }
+  ],
+  [
+    1,
+    {
+      "Test": {
+        "Envelope": {
+          "envelope_list": [
+            "From"
+          ],
+          "key_list": [
+            {
+              "Text": ":addrbook:default"
+            }
+          ],
+          "address_part": "All",
+          "match_type": "List",
+          "comparator": "AsciiCaseMap",
+          "zone": null,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    2,
+    {
+      "Jz": 7
+    }
+  ],
+  [
+    3,
+    {
+      "Test": {
+        "SpamTest": {
+          "value": {
+            "Number": {
+              "Integer": 8
+            }
+          },
+          "match_type": {
+            "Value": "Ge"
+          },
+          "comparator": "AsciiNumeric",
+          "percent": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    4,
+    {
+      "Jz": 6
+    }
+  ],
+  [
+    5,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "spam"
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    6,
+    {
+      "Jmp": 10
+    }
+  ],
+  [
+    7,
+    {
+      "Test": {
+        "SpamTest": {
+          "value": {
+            "Number": {
+              "Integer": 3
+            }
+          },
+          "match_type": {
+            "Value": "Ge"
+          },
+          "comparator": "AsciiNumeric",
+          "percent": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    8,
+    {
+      "Jz": 10
+    }
+  ],
+  [
+    9,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "spam"
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    10,
+    {
+      "Test": {
+        "ValidExtList": {
+          "list_names": [
+            {
+              "Text": "addrbook"
+            }
+          ],
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    11,
+    {
+      "Jz": 13
+    }
+  ],
+  [
+    12,
+    {
+      "Keep": {
+        "flags": []
+      }
+    }
+  ],
+  [
+    13,
+    {
+      "Test": {
+        "Envelope": {
+          "envelope_list": [
+            "From"
+          ],
+          "key_list": [
+            {
+              "Text": ":addrbook:default"
+            }
+          ],
+          "address_part": "All",
+          "match_type": "List",
+          "comparator": "AsciiCaseMap",
+          "zone": null,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    14,
+    {
+      "Jz": 18
+    }
+  ],
+  [
+    15,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 0
+        },
+        "value": {
+          "Number": {
+            "Integer": 8
+          }
+        }
+      }
+    }
+  ],
+  [
+    16,
+    {
+      "Clear": {
+        "local_vars_idx": 0,
+        "local_vars_num": 1,
+        "match_vars": 0
+      }
+    }
+  ],
+  [
+    17,
+    {
+      "Jmp": 20
+    }
+  ],
+  [
+    18,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 0
+        },
+        "value": {
+          "Number": {
+            "Integer": 3
+          }
+        }
+      }
+    }
+  ],
+  [
+    19,
+    {
+      "Clear": {
+        "local_vars_idx": 0,
+        "local_vars_num": 1,
+        "match_vars": 0
+      }
+    }
+  ],
+  [
+    20,
+    {
+      "Test": {
+        "SpamTest": {
+          "value": {
+            "Text": ""
+          },
+          "match_type": {
+            "Value": "Ge"
+          },
+          "comparator": "AsciiNumeric",
+          "percent": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    21,
+    {
+      "Jz": 23
+    }
+  ],
+  [
+    22,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "spam"
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    23,
+    {
+      "Test": {
+        "CurrentDate": {
+          "zone": null,
+          "match_type": "List",
+          "comparator": "AsciiCaseMap",
+          "date_part": "Date",
+          "key_list": [
+            {
+              "Text": "tag:example.com,2011-01-01:localHolidays"
+            }
+          ],
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    24,
+    {
+      "Jz": 26
+    }
+  ],
+  [
+    25,
+    {
+      "Notify": {
+        "from": null,
+        "importance": null,
+        "options": [],
+        "message": null,
+        "fcc": null,
+        "method": {
+          "Text": "xmpp:romeo@im.example.com"
+        }
+      }
+    }
+  ],
+  [
+    26,
+    {
+      "Test": {
+        "Envelope": {
+          "envelope_list": [
+            "To"
+          ],
+          "key_list": [
+            {
+              "Text": "mylist"
+            }
+          ],
+          "address_part": "Detail",
+          "match_type": "Is",
+          "comparator": "AsciiCaseMap",
+          "zone": null,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    27,
+    {
+      "Jz": 29
+    }
+  ],
+  [
+    28,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "from"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "tag:example.com,2010-05-28:mylist"
+            }
+          ],
+          "match_type": "List",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    29,
+    {
+      "Jz": 31
+    }
+  ],
+  [
+    30,
+    {
+      "Redirect": {
+        "copy": false,
+        "address": {
+          "Text": "tag:example.com,2010-05-28:mylist"
+        },
+        "notify": "Default",
+        "return_of_content": "Default",
+        "by_time": "None",
+        "list": true
+      }
+    }
+  ],
+  [
+    31,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "received"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "*(* [*.*.*.*])*"
+            }
+          ],
+          "match_type": {
+            "Matches": 120
+          },
+          "comparator": "AsciiCaseMap",
+          "index": 1,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    32,
+    {
+      "Jz": 38
+    }
+  ],
+  [
+    33,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 0
+        },
+        "value": {
+          "List": [
+            {
+              "Variable": {
+                "Match": 3
+              }
+            },
+            {
+              "Text": "."
+            },
+            {
+              "Variable": {
+                "Match": 4
+              }
+            },
+            {
+              "Text": "."
+            },
+            {
+              "Variable": {
+                "Match": 5
+              }
+            },
+            {
+              "Text": "."
+            },
+            {
+              "Variable": {
+                "Match": 6
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  [
+    34,
+    {
+      "Test": {
+        "String": {
+          "match_type": "List",
+          "comparator": "AsciiCaseMap",
+          "source": [
+            {
+              "Variable": {
+                "Local": 0
+              }
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "tag:example.com,2011-04-10:DisallowedIPs"
+            }
+          ],
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    35,
+    {
+      "Jz": 37
+    }
+  ],
+  [
+    36,
+    {
+      "Reject": {
+        "ereject": false,
+        "reason": {
+          "Text": "Message not allowed from this IP address"
+        }
+      }
+    }
+  ],
+  [
+    37,
+    {
+      "Clear": {
+        "local_vars_idx": 0,
+        "local_vars_num": 1,
+        "match_vars": 0
+      }
+    }
+  ],
+  [
+    38,
+    "ForEveryPartPush"
+  ],
+  [
+    39,
+    {
+      "ForEveryPart": {
+        "jz_pos": 46
+      }
+    }
+  ],
+  [
+    40,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "Content-Type"
+            },
+            {
+              "Text": "Content-Disposition"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "tag:example.com,2011-04-10:BadFileNameExts"
+            }
+          ],
+          "match_type": "List",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": {
+            "Param": [
+              {
+                "Text": "filename"
+              }
+            ]
+          },
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    41,
+    {
+      "Jz": 45
+    }
+  ],
+  [
+    42,
+    {
+      "Enclose": {
+        "subject": {
+          "Text": "Warning"
+        },
+        "headers": [],
+        "value": {
+          "Text": "WARNING!\n"
+        }
+      }
+    }
+  ],
+  [
+    43,
+    {
+      "ForEveryPartPop": 1
+    }
+  ],
+  [
+    44,
+    {
+      "Jmp": 46
+    }
+  ],
+  [
+    45,
+    {
+      "Jmp": 39
+    }
+  ]
+]

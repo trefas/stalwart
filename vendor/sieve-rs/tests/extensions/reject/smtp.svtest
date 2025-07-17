@@ -1,0 +1,35 @@
+require "vnd.stalwart.testsuite";
+require "envelope";
+require "reject";
+
+test_set "message" text:
+From: stephan@example.org
+To: tss@example.net
+Subject: Frop!
+
+Frop!
+.
+;
+
+test_set "envelope.from" "sirius@example.org";
+test_set "envelope.to" "timo@example.net";
+
+test "Basic" {
+	reject "I don't want your mail";
+
+	if not test_result_action "reject" {
+		test_fail "reject action missing from result";
+	}
+
+}
+
+test_result_reset;
+test_set "envelope.from" "<>";
+
+test "Null Sender" {
+	reject "I don't want your mail";
+
+	if not test_result_action "reject" {
+		test_fail "reject action missing from result";
+	}
+}

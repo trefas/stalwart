@@ -1,0 +1,32 @@
+require "vnd.stalwart.testsuite";
+require "include";
+require "variables";
+
+test_set "message" text:
+From: idiot@example.com
+To: idiot@example.org
+Subject: Frop!
+
+Frop.
+.
+;
+
+test "Actions Fileinto" {
+	include "actions-fileinto";
+
+	test_message :folder "aaaa" 0;
+
+	if not header "subject" "Frop!" {
+		test_fail "fileinto \"aaaa\" not executed.";
+	}
+
+	test_message :folder "bbbb" 0;
+
+	if not header "subject" "Frop!" {
+		test_fail "fileinto \"bbbb\" not executed.";
+	}
+}
+
+test "Namespace - file" {
+	include "namespace-execute";
+}

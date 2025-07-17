@@ -1,0 +1,37 @@
+require "vnd.stalwart.testsuite";
+require "envelope";
+
+test_set "message" text:
+From: tss@example.net
+To: stephan@example.org
+Subject: Frop!
+
+Frop!
+.
+;
+
+test_set "envelope.from" "timo@example.net";
+test_set "envelope.to" "\"sirius\"@example.org";
+
+/*
+ * Mail address normalization - redirect
+ */
+
+test "Mail address normalization - redirect" {
+	redirect "\"S[r]us\"@example.net";
+	if not test_result_action "redirect" "S[r]us@example.net" {
+      test_fail "redirect action missing from result";
+    }
+
+	test_result_reset;
+	redirect "\"Sirius\"@example.net";
+	if not test_result_action "redirect" "Sirius@example.net" {
+      test_fail "redirect action missing from result";
+    }
+
+	test_result_reset;
+	redirect "\"Stephan Bosch\" <\"S.Bosch\"@example.net>";
+	if not test_result_action "redirect" "S.Bosch@example.net" {
+      test_fail "redirect action missing from result";
+    }
+}

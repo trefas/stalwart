@@ -1,0 +1,46 @@
+[
+  [
+    0,
+    {
+      "Require": [
+        "Environment"
+      ]
+    }
+  ],
+  [
+    1,
+    {
+      "Test": {
+        "Environment": {
+          "match_type": {
+            "Matches": 0
+          },
+          "comparator": "AsciiCaseMap",
+          "source": [
+            {
+              "Variable": {
+                "Environment": "remote-host"
+              }
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "*.example.com"
+            }
+          ],
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    2,
+    {
+      "Jz": 4
+    }
+  ],
+  [
+    3,
+    "Discard"
+  ]
+]

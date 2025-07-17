@@ -1,0 +1,768 @@
+[
+  [
+    0,
+    {
+      "Require": [
+        "Duplicate",
+        "Variables",
+        "FileInto",
+        "Mailbox",
+        "Imap4Flags",
+        "Envelope",
+        "Enotify"
+      ]
+    }
+  ],
+  [
+    1,
+    {
+      "Test": {
+        "Duplicate": {
+          "handle": null,
+          "dup_match": "Default",
+          "seconds": null,
+          "last": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    2,
+    {
+      "Jz": 4
+    }
+  ],
+  [
+    3,
+    "Discard"
+  ],
+  [
+    4,
+    {
+      "Test": {
+        "Duplicate": {
+          "handle": null,
+          "dup_match": {
+            "Header": {
+              "Text": "message-id"
+            }
+          },
+          "seconds": null,
+          "last": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    5,
+    {
+      "Jz": 7
+    }
+  ],
+  [
+    6,
+    "Discard"
+  ],
+  [
+    7,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "message-id"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "*"
+            }
+          ],
+          "match_type": {
+            "Matches": 3
+          },
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    8,
+    {
+      "Jz": 12
+    }
+  ],
+  [
+    9,
+    {
+      "Test": {
+        "Duplicate": {
+          "handle": null,
+          "dup_match": {
+            "UniqueId": {
+              "Variable": {
+                "Match": 0
+              }
+            }
+          },
+          "seconds": null,
+          "last": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    10,
+    {
+      "Jz": 12
+    }
+  ],
+  [
+    11,
+    "Discard"
+  ],
+  [
+    12,
+    {
+      "Test": {
+        "Duplicate": {
+          "handle": null,
+          "dup_match": "Default",
+          "seconds": null,
+          "last": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    13,
+    {
+      "Jz": 15
+    }
+  ],
+  [
+    14,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": true,
+        "folder": {
+          "Text": "Trash/Duplicate"
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    15,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "subject"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "ALERT: *"
+            }
+          ],
+          "match_type": {
+            "Matches": 2
+          },
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    16,
+    {
+      "Jz": 21
+    }
+  ],
+  [
+    17,
+    {
+      "Test": {
+        "Duplicate": {
+          "handle": null,
+          "dup_match": {
+            "UniqueId": {
+              "Variable": {
+                "Match": 1
+              }
+            }
+          },
+          "seconds": 60,
+          "last": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    18,
+    {
+      "Jz": 20
+    }
+  ],
+  [
+    19,
+    {
+      "EditFlags": {
+        "action": "Set",
+        "name": null,
+        "flags": [
+          {
+            "Text": "\\seen"
+          }
+        ]
+      }
+    }
+  ],
+  [
+    20,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "Alerts"
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    21,
+    {
+      "Test": {
+        "Envelope": {
+          "envelope_list": [
+            "From"
+          ],
+          "key_list": [
+            {
+              "Text": "*"
+            }
+          ],
+          "address_part": "All",
+          "match_type": {
+            "Matches": 2
+          },
+          "comparator": "AsciiCaseMap",
+          "zone": null,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    22,
+    {
+      "Jz": 25
+    }
+  ],
+  [
+    23,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 0
+        },
+        "value": {
+          "Variable": {
+            "Match": 1
+          }
+        }
+      }
+    }
+  ],
+  [
+    24,
+    {
+      "Clear": {
+        "local_vars_idx": 0,
+        "local_vars_num": 1,
+        "match_vars": 0
+      }
+    }
+  ],
+  [
+    25,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "subject"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "*"
+            }
+          ],
+          "match_type": {
+            "Matches": 2
+          },
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    26,
+    {
+      "Jz": 29
+    }
+  ],
+  [
+    27,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 0
+        },
+        "value": {
+          "Variable": {
+            "Match": 1
+          }
+        }
+      }
+    }
+  ],
+  [
+    28,
+    {
+      "Clear": {
+        "local_vars_idx": 0,
+        "local_vars_num": 1,
+        "match_vars": 0
+      }
+    }
+  ],
+  [
+    29,
+    {
+      "Test": {
+        "Duplicate": {
+          "handle": null,
+          "dup_match": {
+            "UniqueId": {
+              "Text": ""
+            }
+          },
+          "seconds": 1800,
+          "last": false,
+          "is_not": true
+        }
+      }
+    }
+  ],
+  [
+    30,
+    {
+      "Jz": 32
+    }
+  ],
+  [
+    31,
+    {
+      "Notify": {
+        "from": null,
+        "importance": null,
+        "options": [],
+        "message": {
+          "List": [
+            {
+              "Text": "[SIEVE] "
+            },
+            {
+              "Text": ": "
+            }
+          ]
+        },
+        "fcc": null,
+        "method": {
+          "Text": "xmpp:user@im.example.com"
+        }
+      }
+    }
+  ],
+  [
+    32,
+    {
+      "Test": {
+        "Envelope": {
+          "envelope_list": [
+            "From"
+          ],
+          "key_list": [
+            {
+              "Text": "*"
+            }
+          ],
+          "address_part": "All",
+          "match_type": {
+            "Matches": 2
+          },
+          "comparator": "AsciiCaseMap",
+          "zone": null,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    33,
+    {
+      "Jz": 36
+    }
+  ],
+  [
+    34,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 0
+        },
+        "value": {
+          "Variable": {
+            "Match": 1
+          }
+        }
+      }
+    }
+  ],
+  [
+    35,
+    {
+      "Clear": {
+        "local_vars_idx": 0,
+        "local_vars_num": 1,
+        "match_vars": 0
+      }
+    }
+  ],
+  [
+    36,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "subject"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "*"
+            }
+          ],
+          "match_type": {
+            "Matches": 2
+          },
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    37,
+    {
+      "Jz": 40
+    }
+  ],
+  [
+    38,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 0
+        },
+        "value": {
+          "Variable": {
+            "Match": 1
+          }
+        }
+      }
+    }
+  ],
+  [
+    39,
+    {
+      "Clear": {
+        "local_vars_idx": 0,
+        "local_vars_num": 1,
+        "match_vars": 0
+      }
+    }
+  ],
+  [
+    40,
+    {
+      "Test": {
+        "String": {
+          "match_type": {
+            "Matches": 2
+          },
+          "comparator": "AsciiCaseMap",
+          "source": [
+            {
+              "Text": ""
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "Re:*"
+            }
+          ],
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    41,
+    {
+      "Jz": 44
+    }
+  ],
+  [
+    42,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 0
+        },
+        "value": {
+          "Variable": {
+            "Match": 1
+          }
+        }
+      }
+    }
+  ],
+  [
+    43,
+    {
+      "Clear": {
+        "local_vars_idx": 0,
+        "local_vars_num": 1,
+        "match_vars": 0
+      }
+    }
+  ],
+  [
+    44,
+    {
+      "Test": {
+        "Duplicate": {
+          "handle": null,
+          "dup_match": {
+            "UniqueId": {
+              "Text": " "
+            }
+          },
+          "seconds": 1800,
+          "last": false,
+          "is_not": true
+        }
+      }
+    }
+  ],
+  [
+    45,
+    {
+      "Jz": 47
+    }
+  ],
+  [
+    46,
+    {
+      "Notify": {
+        "from": null,
+        "importance": null,
+        "options": [],
+        "message": {
+          "List": [
+            {
+              "Text": "[SIEVE] "
+            },
+            {
+              "Text": ": "
+            }
+          ]
+        },
+        "fcc": null,
+        "method": {
+          "Text": "xmpp:user@im.example.com"
+        }
+      }
+    }
+  ],
+  [
+    47,
+    {
+      "Test": {
+        "Duplicate": {
+          "handle": {
+            "Text": "notifier"
+          },
+          "dup_match": {
+            "Header": {
+              "Text": "X-Event-ID"
+            }
+          },
+          "seconds": null,
+          "last": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    48,
+    {
+      "Jz": 50
+    }
+  ],
+  [
+    49,
+    "Discard"
+  ],
+  [
+    50,
+    {
+      "Test": {
+        "Duplicate": {
+          "handle": {
+            "Text": "support"
+          },
+          "dup_match": {
+            "Header": {
+              "Text": "X-Ticket-ID"
+            }
+          },
+          "seconds": null,
+          "last": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    51,
+    {
+      "Jz": 55
+    }
+  ],
+  [
+    52,
+    {
+      "Test": {
+        "Address": {
+          "header_list": [
+            {
+              "Text": "to"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "support@example.com"
+            }
+          ],
+          "address_part": "All",
+          "match_type": "Is",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    53,
+    {
+      "Jz": 55
+    }
+  ],
+  [
+    54,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "subject"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "fileserver"
+            }
+          ],
+          "match_type": "Contains",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    55,
+    {
+      "Jz": 57
+    }
+  ],
+  [
+    56,
+    {
+      "EditFlags": {
+        "action": "Set",
+        "name": null,
+        "flags": [
+          {
+            "Text": "\\seen"
+          }
+        ]
+      }
+    }
+  ]
+]

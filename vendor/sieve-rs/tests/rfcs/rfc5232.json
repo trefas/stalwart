@@ -1,0 +1,853 @@
+[
+  [
+    0,
+    {
+      "Require": [
+        "FileInto",
+        "Imap4Flags",
+        "Variables",
+        "Relational"
+      ]
+    }
+  ],
+  [
+    1,
+    {
+      "Test": {
+        "Size": {
+          "over": true,
+          "limit": 512000,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    2,
+    {
+      "Jz": 4
+    }
+  ],
+  [
+    3,
+    {
+      "EditFlags": {
+        "action": "Set",
+        "name": null,
+        "flags": [
+          {
+            "Text": "\\Deleted"
+          }
+        ]
+      }
+    }
+  ],
+  [
+    4,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "from"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "boss@frobnitzm.example.edu"
+            }
+          ],
+          "match_type": "Contains",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    5,
+    {
+      "Jz": 9
+    }
+  ],
+  [
+    6,
+    {
+      "EditFlags": {
+        "action": "Set",
+        "name": {
+          "Local": 0
+        },
+        "flags": [
+          {
+            "Text": "\\Flagged"
+          }
+        ]
+      }
+    }
+  ],
+  [
+    7,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "INBOX.From Boss"
+        },
+        "flags": [
+          {
+            "Variable": {
+              "Local": 0
+            }
+          }
+        ],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    8,
+    {
+      "Clear": {
+        "local_vars_idx": 0,
+        "local_vars_num": 1,
+        "match_vars": 0
+      }
+    }
+  ],
+  [
+    9,
+    {
+      "EditFlags": {
+        "action": "Add",
+        "name": {
+          "Local": 0
+        },
+        "flags": [
+          {
+            "Text": "\\Deleted"
+          }
+        ]
+      }
+    }
+  ],
+  [
+    10,
+    {
+      "EditFlags": {
+        "action": "Add",
+        "name": {
+          "Local": 0
+        },
+        "flags": [
+          {
+            "Text": "\\Answered"
+          }
+        ]
+      }
+    }
+  ],
+  [
+    11,
+    {
+      "EditFlags": {
+        "action": "Add",
+        "name": {
+          "Local": 0
+        },
+        "flags": [
+          {
+            "Text": "\\Deleted"
+          },
+          {
+            "Text": "\\Answered"
+          }
+        ]
+      }
+    }
+  ],
+  [
+    12,
+    {
+      "EditFlags": {
+        "action": "Add",
+        "name": {
+          "Local": 0
+        },
+        "flags": [
+          {
+            "Text": "\\Deleted \\Answered"
+          }
+        ]
+      }
+    }
+  ],
+  [
+    13,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "Disposition-Notification-To"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "mel@example.com"
+            }
+          ],
+          "match_type": "Contains",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    14,
+    {
+      "Jz": 16
+    }
+  ],
+  [
+    15,
+    {
+      "EditFlags": {
+        "action": "Add",
+        "name": {
+          "Local": 0
+        },
+        "flags": [
+          {
+            "Text": "$MDNRequired"
+          }
+        ]
+      }
+    }
+  ],
+  [
+    16,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "from"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "imap@cac.washington.example.edu"
+            }
+          ],
+          "match_type": "Contains",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    17,
+    {
+      "Jz": 20
+    }
+  ],
+  [
+    18,
+    {
+      "EditFlags": {
+        "action": "Remove",
+        "name": {
+          "Local": 0
+        },
+        "flags": [
+          {
+            "Text": "$MDNRequired"
+          }
+        ]
+      }
+    }
+  ],
+  [
+    19,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "INBOX.imap-list"
+        },
+        "flags": [
+          {
+            "Variable": {
+              "Local": 0
+            }
+          }
+        ],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    20,
+    {
+      "Test": {
+        "HasFlag": {
+          "comparator": "AsciiCaseMap",
+          "match_type": "Contains",
+          "variable_list": [
+            {
+              "Local": 1
+            }
+          ],
+          "flags": [
+            {
+              "Text": "Junk"
+            }
+          ],
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    21,
+    {
+      "Jnz": 25
+    }
+  ],
+  [
+    22,
+    {
+      "Test": {
+        "HasFlag": {
+          "comparator": "AsciiCaseMap",
+          "match_type": "Contains",
+          "variable_list": [
+            {
+              "Local": 1
+            }
+          ],
+          "flags": [
+            {
+              "Text": "label"
+            },
+            {
+              "Text": "forward"
+            }
+          ],
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    23,
+    {
+      "Jnz": 25
+    }
+  ],
+  [
+    24,
+    {
+      "Test": {
+        "HasFlag": {
+          "comparator": "AsciiNumeric",
+          "match_type": {
+            "Count": "Ge"
+          },
+          "variable_list": [
+            {
+              "Local": 2
+            }
+          ],
+          "flags": [
+            {
+              "Number": {
+                "Integer": 2
+              }
+            }
+          ],
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    25,
+    {
+      "Jz": 28
+    }
+  ],
+  [
+    26,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "INBOX.From Boss"
+        },
+        "flags": [
+          {
+            "Text": "\\Deleted"
+          }
+        ],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    27,
+    {
+      "Keep": {
+        "flags": [
+          {
+            "Text": "hello"
+          }
+        ]
+      }
+    }
+  ],
+  [
+    28,
+    {
+      "Test": {
+        "Size": {
+          "over": true,
+          "limit": 1048576,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    29,
+    {
+      "Jz": 35
+    }
+  ],
+  [
+    30,
+    {
+      "EditFlags": {
+        "action": "Add",
+        "name": {
+          "Local": 2
+        },
+        "flags": [
+          {
+            "Text": "Big"
+          }
+        ]
+      }
+    }
+  ],
+  [
+    31,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "From"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "boss@company.example.com"
+            }
+          ],
+          "match_type": "Is",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    32,
+    {
+      "Jz": 34
+    }
+  ],
+  [
+    33,
+    {
+      "EditFlags": {
+        "action": "Add",
+        "name": {
+          "Local": 2
+        },
+        "flags": [
+          {
+            "Text": "\\Flagged"
+          }
+        ]
+      }
+    }
+  ],
+  [
+    34,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "Big messages"
+        },
+        "flags": [
+          {
+            "Variable": {
+              "Local": 2
+            }
+          }
+        ],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    35,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "From"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "grandma@example.net"
+            }
+          ],
+          "match_type": "Is",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    36,
+    {
+      "Jz": 39
+    }
+  ],
+  [
+    37,
+    {
+      "EditFlags": {
+        "action": "Add",
+        "name": {
+          "Local": 2
+        },
+        "flags": [
+          {
+            "Text": "\\Answered"
+          },
+          {
+            "Text": "$MDNSent"
+          }
+        ]
+      }
+    }
+  ],
+  [
+    38,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "GrandMa"
+        },
+        "flags": [
+          {
+            "Variable": {
+              "Local": 2
+            }
+          }
+        ],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    39,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "Sender"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "owner-ietf-mta-filters@example.org"
+            }
+          ],
+          "match_type": "Is",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    40,
+    {
+      "Jz": 44
+    }
+  ],
+  [
+    41,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 2
+        },
+        "value": {
+          "Text": "\\Flagged $Work"
+        }
+      }
+    }
+  ],
+  [
+    42,
+    {
+      "Keep": {
+        "flags": [
+          {
+            "Variable": {
+              "Local": 2
+            }
+          }
+        ]
+      }
+    }
+  ],
+  [
+    43,
+    {
+      "Jmp": 56
+    }
+  ],
+  [
+    44,
+    {
+      "Test": {
+        "Address": {
+          "header_list": [
+            {
+              "Text": "From"
+            },
+            {
+              "Text": "To"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "company.example.com"
+            }
+          ],
+          "address_part": "Domain",
+          "match_type": "Is",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    45,
+    {
+      "Jz": 48
+    }
+  ],
+  [
+    46,
+    {
+      "Keep": {
+        "flags": [
+          {
+            "Variable": {
+              "Local": 2
+            }
+          }
+        ]
+      }
+    }
+  ],
+  [
+    47,
+    {
+      "Jmp": 56
+    }
+  ],
+  [
+    48,
+    {
+      "Test": {
+        "Address": {
+          "header_list": [
+            {
+              "Text": "To"
+            },
+            {
+              "Text": "Cc"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "me@company.example.com"
+            }
+          ],
+          "address_part": "All",
+          "match_type": "Contains",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_anychild": false,
+          "is_not": true
+        }
+      }
+    }
+  ],
+  [
+    49,
+    {
+      "Jnz": 51
+    }
+  ],
+  [
+    50,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "subject"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "*make*money*fast*"
+            },
+            {
+              "Text": "*university*dipl*mas*"
+            }
+          ],
+          "match_type": {
+            "Matches": 0
+          },
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    51,
+    {
+      "Jz": 55
+    }
+  ],
+  [
+    52,
+    {
+      "EditFlags": {
+        "action": "Remove",
+        "name": {
+          "Local": 2
+        },
+        "flags": [
+          {
+            "Text": "\\Flagged"
+          }
+        ]
+      }
+    }
+  ],
+  [
+    53,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "spam"
+        },
+        "flags": [
+          {
+            "Variable": {
+              "Local": 2
+            }
+          }
+        ],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    54,
+    {
+      "Jmp": 56
+    }
+  ],
+  [
+    55,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "personal"
+        },
+        "flags": [
+          {
+            "Variable": {
+              "Local": 2
+            }
+          }
+        ],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ]
+]

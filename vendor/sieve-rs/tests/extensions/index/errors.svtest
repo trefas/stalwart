@@ -1,0 +1,16 @@
+require "vnd.stalwart.testsuite";
+
+require "relational";
+require "comparator-i;ascii-numeric";
+
+/*
+ * Invalid syntax
+ */
+
+test "Invalid Syntax" {
+        if test_script_compile "errors/syntax.sieve" {
+                test_fail "compile should have failed";
+        }
+}
+
+

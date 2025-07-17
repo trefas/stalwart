@@ -1,0 +1,676 @@
+[
+  [
+    0,
+    {
+      "Require": [
+        "Copy",
+        "RedirectDeliverBy",
+        "Date",
+        "Variables",
+        "Relational",
+        {
+          "Comparator": "AsciiNumeric"
+        },
+        "Envelope",
+        "EnvelopeDsn",
+        "EnvelopeDeliverBy",
+        "RedirectDsn",
+        "FileInto"
+      ]
+    }
+  ],
+  [
+    1,
+    {
+      "Test": {
+        "Envelope": {
+          "envelope_list": [
+            "Notify"
+          ],
+          "key_list": [
+            {
+              "Text": "SUCCESS"
+            }
+          ],
+          "address_part": "All",
+          "match_type": "Is",
+          "comparator": "AsciiCaseMap",
+          "zone": null,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    2,
+    {
+      "Jz": 3
+    }
+  ],
+  [
+    3,
+    {
+      "Test": {
+        "Envelope": {
+          "envelope_list": [
+            "Notify"
+          ],
+          "key_list": [
+            {
+              "Text": "FAILURE"
+            }
+          ],
+          "address_part": "All",
+          "match_type": "Is",
+          "comparator": "AsciiCaseMap",
+          "zone": null,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    4,
+    {
+      "Jz": 6
+    }
+  ],
+  [
+    5,
+    {
+      "Test": {
+        "Envelope": {
+          "envelope_list": [
+            "Notify"
+          ],
+          "key_list": [
+            {
+              "Number": {
+                "Integer": 1
+              }
+            }
+          ],
+          "address_part": "All",
+          "match_type": {
+            "Count": "Eq"
+          },
+          "comparator": "AsciiNumeric",
+          "zone": null,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    6,
+    {
+      "Jz": 7
+    }
+  ],
+  [
+    7,
+    {
+      "Test": {
+        "Envelope": {
+          "envelope_list": [
+            "Orcpt"
+          ],
+          "key_list": [
+            {
+              "Text": "rfc822;*@example.com"
+            }
+          ],
+          "address_part": "All",
+          "match_type": {
+            "Matches": 5
+          },
+          "comparator": "AsciiCaseMap",
+          "zone": null,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    8,
+    {
+      "Jz": 9
+    }
+  ],
+  [
+    9,
+    {
+      "Test": {
+        "Envelope": {
+          "envelope_list": [
+            "ByTimeRelative"
+          ],
+          "key_list": [
+            {
+              "Text": "-"
+            }
+          ],
+          "address_part": "All",
+          "match_type": "Contains",
+          "comparator": "AsciiCaseMap",
+          "zone": null,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    10,
+    {
+      "Jnz": 12
+    }
+  ],
+  [
+    11,
+    {
+      "Test": {
+        "Envelope": {
+          "envelope_list": [
+            "ByTimeRelative"
+          ],
+          "key_list": [
+            {
+              "Number": {
+                "Integer": 0
+              }
+            }
+          ],
+          "address_part": "All",
+          "match_type": {
+            "Value": "Eq"
+          },
+          "comparator": "AsciiNumeric",
+          "zone": null,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    12,
+    {
+      "Jz": 13
+    }
+  ],
+  [
+    13,
+    {
+      "Test": {
+        "CurrentDate": {
+          "zone": null,
+          "match_type": {
+            "Matches": 5
+          },
+          "comparator": "AsciiCaseMap",
+          "date_part": "Iso8601",
+          "key_list": [
+            {
+              "Text": "*"
+            }
+          ],
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    14,
+    {
+      "Jz": 19
+    }
+  ],
+  [
+    15,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 0
+        },
+        "value": {
+          "Variable": {
+            "Match": 0
+          }
+        }
+      }
+    }
+  ],
+  [
+    16,
+    {
+      "Test": {
+        "Envelope": {
+          "envelope_list": [
+            "ByTimeAbsolute"
+          ],
+          "key_list": [
+            {
+              "Variable": {
+                "Local": 0
+              }
+            }
+          ],
+          "address_part": "All",
+          "match_type": {
+            "Value": "Ge"
+          },
+          "comparator": "AsciiCaseMap",
+          "zone": null,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    17,
+    {
+      "Jz": 18
+    }
+  ],
+  [
+    18,
+    {
+      "Clear": {
+        "local_vars_idx": 0,
+        "local_vars_num": 1,
+        "match_vars": 0
+      }
+    }
+  ],
+  [
+    19,
+    {
+      "Test": {
+        "Envelope": {
+          "envelope_list": [
+            "ByTimeAbsolute"
+          ],
+          "key_list": [
+            {
+              "Text": "*T*:*:*"
+            }
+          ],
+          "address_part": "All",
+          "match_type": {
+            "Matches": 5
+          },
+          "comparator": "AsciiCaseMap",
+          "zone": 0,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    20,
+    {
+      "Jz": 27
+    }
+  ],
+  [
+    21,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 0
+        },
+        "value": {
+          "Variable": {
+            "Match": 0
+          }
+        }
+      }
+    }
+  ],
+  [
+    22,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 1
+        },
+        "value": {
+          "Variable": {
+            "Match": 2
+          }
+        }
+      }
+    }
+  ],
+  [
+    23,
+    {
+      "Test": {
+        "CurrentDate": {
+          "zone": 0,
+          "match_type": {
+            "Value": "Lt"
+          },
+          "comparator": "AsciiCaseMap",
+          "date_part": "Iso8601",
+          "key_list": [
+            {
+              "Variable": {
+                "Local": 0
+              }
+            }
+          ],
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    24,
+    {
+      "Jz": 26
+    }
+  ],
+  [
+    25,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "List": [
+            {
+              "Text": "missed-"
+            },
+            {
+              "Variable": {
+                "Local": 1
+              }
+            }
+          ]
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    26,
+    {
+      "Clear": {
+        "local_vars_idx": 0,
+        "local_vars_num": 2,
+        "match_vars": 0
+      }
+    }
+  ],
+  [
+    27,
+    {
+      "Test": {
+        "Address": {
+          "header_list": [
+            {
+              "Text": "from"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "user@example.com"
+            }
+          ],
+          "address_part": "All",
+          "match_type": "Is",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    28,
+    {
+      "Jz": 30
+    }
+  ],
+  [
+    29,
+    {
+      "Redirect": {
+        "copy": true,
+        "address": {
+          "Text": "elsewhere@example.com"
+        },
+        "notify": "Never",
+        "return_of_content": "Default",
+        "by_time": "None",
+        "list": false
+      }
+    }
+  ],
+  [
+    30,
+    {
+      "Test": {
+        "Address": {
+          "header_list": [
+            {
+              "Text": "from"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "user@example.com"
+            }
+          ],
+          "address_part": "All",
+          "match_type": "Is",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    31,
+    {
+      "Jz": 33
+    }
+  ],
+  [
+    32,
+    {
+      "Redirect": {
+        "copy": true,
+        "address": {
+          "Text": "cellphone@example.com"
+        },
+        "notify": "Default",
+        "return_of_content": "Default",
+        "by_time": {
+          "Relative": {
+            "rlimit": 600,
+            "mode": "Default",
+            "trace": false
+          }
+        },
+        "list": false
+      }
+    }
+  ],
+  [
+    33,
+    {
+      "Test": {
+        "CurrentDate": {
+          "zone": null,
+          "match_type": {
+            "Value": "Lt"
+          },
+          "comparator": "AsciiNumeric",
+          "date_part": "Hour",
+          "key_list": [
+            {
+              "Number": {
+                "Integer": 22
+              }
+            }
+          ],
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    34,
+    {
+      "Jz": 45
+    }
+  ],
+  [
+    35,
+    {
+      "Test": {
+        "CurrentDate": {
+          "zone": null,
+          "match_type": {
+            "Matches": 1
+          },
+          "comparator": "AsciiCaseMap",
+          "date_part": "Date",
+          "key_list": [
+            {
+              "Text": "*"
+            }
+          ],
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    36,
+    {
+      "Jz": 39
+    }
+  ],
+  [
+    37,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 0
+        },
+        "value": {
+          "Variable": {
+            "Match": 0
+          }
+        }
+      }
+    }
+  ],
+  [
+    38,
+    {
+      "Clear": {
+        "local_vars_idx": 0,
+        "local_vars_num": 1,
+        "match_vars": 0
+      }
+    }
+  ],
+  [
+    39,
+    {
+      "Test": {
+        "CurrentDate": {
+          "zone": null,
+          "match_type": {
+            "Matches": 1
+          },
+          "comparator": "AsciiCaseMap",
+          "date_part": "Zone",
+          "key_list": [
+            {
+              "Text": "*"
+            }
+          ],
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    40,
+    {
+      "Jz": 43
+    }
+  ],
+  [
+    41,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 0
+        },
+        "value": {
+          "Variable": {
+            "Match": 0
+          }
+        }
+      }
+    }
+  ],
+  [
+    42,
+    {
+      "Clear": {
+        "local_vars_idx": 0,
+        "local_vars_num": 1,
+        "match_vars": 0
+      }
+    }
+  ],
+  [
+    43,
+    {
+      "Redirect": {
+        "copy": true,
+        "address": {
+          "Text": "cellphone@example.com"
+        },
+        "notify": "Default",
+        "return_of_content": "Default",
+        "by_time": {
+          "Absolute": {
+            "alimit": {
+              "Text": "T20:00:00"
+            },
+            "mode": "Return",
+            "trace": false
+          }
+        },
+        "list": false
+      }
+    }
+  ],
+  [
+    44,
+    {
+      "Clear": {
+        "local_vars_idx": 0,
+        "local_vars_num": 0,
+        "match_vars": 1
+      }
+    }
+  ]
+]

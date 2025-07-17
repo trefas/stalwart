@@ -1,0 +1,115 @@
+require "vnd.stalwart.testsuite";
+
+require "relational";
+require "comparator-i;ascii-numeric";
+
+/*
+ * Generic include errors
+ */
+
+/*
+test "Generic" {
+	if test_script_compile "errors/generic.sieve" {
+		test_fail "compile should have failed";
+	}
+}
+
+test "Circular - direct" {
+	if test_script_compile "errors/circular-1.sieve" {
+		test_fail "compile should have failed";
+	}
+}
+
+test "Circular - one intermittent" {
+	if test_script_compile "errors/circular-2.sieve" {
+		test_fail "compile should have failed";
+	}
+}
+
+test "Circular - two intermittent" {
+	if test_script_compile "errors/circular-3.sieve" {
+		test_fail "compile should have failed";
+	}
+}
+*/
+
+/*
+ * Using global without variables required
+ */
+
+test "Variables inactive" {
+	if test_script_compile "errors/variables-inactive.sieve" {
+		test_fail "compile should have failed";
+	}
+}
+
+/*
+ * Generic variables errors
+ */
+
+test "Variables" {
+	if test_script_compile "errors/variables.sieve" {
+		test_fail "compile should have failed";
+	}
+}
+
+/*
+ * Global variable namespace
+ */
+
+test "Global Namespace" {
+	if test_script_compile "errors/global-namespace.sieve" {
+		test_fail "compile should have failed";
+	}
+}
+
+/*
+ * Invalid script names
+ */
+
+/*
+test "Invalid Script Names" {
+	if test_script_compile "errors/scriptname.sieve" {
+		test_fail "compile should have failed";
+	}
+}
+*/
+
+/* Include limit */
+
+test "Include limit" {
+	test_config_set "sieve_include_max_includes" "3";
+	test_config_reload :extension "include";
+
+	if test_script_compile "errors/include-limit.sieve" {
+		test_fail "compile should have failed";
+	}
+
+	test_config_set "sieve_include_max_includes" "255";
+	test_config_reload :extension "include";
+
+	if not test_script_compile "errors/include-limit.sieve" {
+		test_fail "compile should have succeeded";
+	}
+}
+
+/* Depth limit */
+/*
+
+test "Depth limit" {
+	test_config_set "sieve_include_max_nesting_depth" "2";
+	test_config_reload :extension "include";
+
+	if test_script_compile "errors/depth-limit.sieve" {
+		test_fail "compile should have failed";
+	}
+
+	test_config_set "sieve_include_max_nesting_depth" "10";
+	test_config_reload :extension "include";
+
+	if not test_script_compile "errors/depth-limit.sieve" {
+		test_fail "compile should have succeeded";
+	}
+}
+
+*/

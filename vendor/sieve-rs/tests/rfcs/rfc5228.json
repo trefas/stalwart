@@ -1,0 +1,960 @@
+[
+  [
+    0,
+    {
+      "Test": {
+        "Size": {
+          "over": true,
+          "limit": 102400,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    1,
+    {
+      "Jz": 3
+    }
+  ],
+  [
+    2,
+    "Discard"
+  ],
+  [
+    3,
+    {
+      "Test": {
+        "Size": {
+          "over": true,
+          "limit": 102400,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    4,
+    {
+      "Jz": 6
+    }
+  ],
+  [
+    5,
+    "Discard"
+  ],
+  [
+    6,
+    {
+      "Require": [
+        "EncodedCharacter",
+        "FileInto",
+        "Envelope"
+      ]
+    }
+  ],
+  [
+    7,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "Subject"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "$$$"
+            }
+          ],
+          "match_type": "Contains",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    8,
+    {
+      "Jz": 10
+    }
+  ],
+  [
+    9,
+    "Discard"
+  ],
+  [
+    10,
+    {
+      "Test": {
+        "Exists": {
+          "header_names": [
+            {
+              "Text": "From"
+            },
+            {
+              "Text": "Date"
+            }
+          ],
+          "mime_anychild": false,
+          "is_not": true
+        }
+      }
+    }
+  ],
+  [
+    11,
+    {
+      "Jnz": 13
+    }
+  ],
+  [
+    12,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "from"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "fool@example.com"
+            }
+          ],
+          "match_type": "Contains",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    13,
+    {
+      "Jz": 15
+    }
+  ],
+  [
+    14,
+    "Discard"
+  ],
+  [
+    15,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "Subject"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "MAKE MONEY FAST"
+            }
+          ],
+          "match_type": "Contains",
+          "comparator": "Octet",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    16,
+    {
+      "Jz": 18
+    }
+  ],
+  [
+    17,
+    "Discard"
+  ],
+  [
+    18,
+    {
+      "Test": {
+        "Size": {
+          "over": true,
+          "limit": 512000,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    19,
+    {
+      "Jz": 21
+    }
+  ],
+  [
+    20,
+    "Discard"
+  ],
+  [
+    21,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "from"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "coyote"
+            }
+          ],
+          "match_type": "Contains",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    22,
+    {
+      "Jz": 25
+    }
+  ],
+  [
+    23,
+    "Discard"
+  ],
+  [
+    24,
+    {
+      "Jmp": 30
+    }
+  ],
+  [
+    25,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "subject"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "$$$"
+            }
+          ],
+          "match_type": "Contains",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    26,
+    {
+      "Jz": 29
+    }
+  ],
+  [
+    27,
+    "Discard"
+  ],
+  [
+    28,
+    {
+      "Jmp": 30
+    }
+  ],
+  [
+    29,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "INBOX"
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    30,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "From"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "coyote"
+            }
+          ],
+          "match_type": "Contains",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    31,
+    {
+      "Jz": 34
+    }
+  ],
+  [
+    32,
+    {
+      "Redirect": {
+        "copy": false,
+        "address": {
+          "Text": "acm@example.com"
+        },
+        "notify": "Default",
+        "return_of_content": "Default",
+        "by_time": "None",
+        "list": false
+      }
+    }
+  ],
+  [
+    33,
+    {
+      "Jmp": 39
+    }
+  ],
+  [
+    34,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "Subject"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "$$$"
+            }
+          ],
+          "match_type": "Contains",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    35,
+    {
+      "Jz": 38
+    }
+  ],
+  [
+    36,
+    {
+      "Redirect": {
+        "copy": false,
+        "address": {
+          "Text": "postmaster@example.com"
+        },
+        "notify": "Default",
+        "return_of_content": "Default",
+        "by_time": "None",
+        "list": false
+      }
+    }
+  ],
+  [
+    37,
+    {
+      "Jmp": 39
+    }
+  ],
+  [
+    38,
+    {
+      "Redirect": {
+        "copy": false,
+        "address": {
+          "Text": "field@example.com"
+        },
+        "notify": "Default",
+        "return_of_content": "Default",
+        "by_time": "None",
+        "list": false
+      }
+    }
+  ],
+  [
+    39,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "from"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "coyote"
+            }
+          ],
+          "match_type": "Contains",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    40,
+    {
+      "Jz": 42
+    }
+  ],
+  [
+    41,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "INBOX.harassment"
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    42,
+    {
+      "Redirect": {
+        "copy": false,
+        "address": {
+          "Text": "bart@example.com"
+        },
+        "notify": "Default",
+        "return_of_content": "Default",
+        "by_time": "None",
+        "list": false
+      }
+    }
+  ],
+  [
+    43,
+    {
+      "Test": {
+        "Size": {
+          "over": false,
+          "limit": 1048576,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    44,
+    {
+      "Jz": 47
+    }
+  ],
+  [
+    45,
+    {
+      "Keep": {
+        "flags": []
+      }
+    }
+  ],
+  [
+    46,
+    {
+      "Jmp": 48
+    }
+  ],
+  [
+    47,
+    "Discard"
+  ],
+  [
+    48,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "from"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "idiot@example.com"
+            }
+          ],
+          "match_type": "Contains",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    49,
+    {
+      "Jz": 51
+    }
+  ],
+  [
+    50,
+    "Discard"
+  ],
+  [
+    51,
+    {
+      "Test": {
+        "Address": {
+          "header_list": [
+            {
+              "Text": "from"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "tim@example.com"
+            }
+          ],
+          "address_part": "All",
+          "match_type": "Is",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    52,
+    {
+      "Jz": 54
+    }
+  ],
+  [
+    53,
+    "Discard"
+  ],
+  [
+    54,
+    {
+      "Test": {
+        "Envelope": {
+          "envelope_list": [
+            "From"
+          ],
+          "key_list": [
+            {
+              "Text": "tim@example.com"
+            }
+          ],
+          "address_part": "All",
+          "match_type": "Is",
+          "comparator": "AsciiCaseMap",
+          "zone": null,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    55,
+    {
+      "Jz": 57
+    }
+  ],
+  [
+    56,
+    "Discard"
+  ],
+  [
+    57,
+    {
+      "Test": {
+        "Exists": {
+          "header_names": [
+            {
+              "Text": "From"
+            },
+            {
+              "Text": "Date"
+            }
+          ],
+          "mime_anychild": false,
+          "is_not": true
+        }
+      }
+    }
+  ],
+  [
+    58,
+    {
+      "Jz": 60
+    }
+  ],
+  [
+    59,
+    "Discard"
+  ],
+  [
+    60,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "X-Caffeine"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": ""
+            }
+          ],
+          "match_type": "Is",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    61,
+    {
+      "Jnz": 65
+    }
+  ],
+  [
+    62,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "X-Caffeine"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": ""
+            }
+          ],
+          "match_type": "Contains",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    63,
+    {
+      "Jnz": 65
+    }
+  ],
+  [
+    64,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "Cc"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "?*"
+            }
+          ],
+          "match_type": {
+            "Matches": 0
+          },
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": true
+        }
+      }
+    }
+  ],
+  [
+    65,
+    {
+      "Jz": 67
+    }
+  ],
+  [
+    66,
+    "Stop"
+  ],
+  [
+    67,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "Sender"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "owner-ietf-mta-filters@imc.org"
+            }
+          ],
+          "match_type": "Is",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    68,
+    {
+      "Jz": 71
+    }
+  ],
+  [
+    69,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "filter"
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    70,
+    {
+      "Jmp": 82
+    }
+  ],
+  [
+    71,
+    {
+      "Test": {
+        "Address": {
+          "header_list": [
+            {
+              "Text": "From"
+            },
+            {
+              "Text": "To"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "example.com"
+            }
+          ],
+          "address_part": "Domain",
+          "match_type": "Is",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    72,
+    {
+      "Jz": 75
+    }
+  ],
+  [
+    73,
+    {
+      "Keep": {
+        "flags": []
+      }
+    }
+  ],
+  [
+    74,
+    {
+      "Jmp": 82
+    }
+  ],
+  [
+    75,
+    {
+      "Test": {
+        "Address": {
+          "header_list": [
+            {
+              "Text": "To"
+            },
+            {
+              "Text": "Cc"
+            },
+            {
+              "Text": "Bcc"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "me@example.com"
+            }
+          ],
+          "address_part": "All",
+          "match_type": "Contains",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_anychild": false,
+          "is_not": true
+        }
+      }
+    }
+  ],
+  [
+    76,
+    {
+      "Jnz": 78
+    }
+  ],
+  [
+    77,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "subject"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "*make*money*fast*"
+            },
+            {
+              "Text": "*university*dipl*mas*"
+            }
+          ],
+          "match_type": {
+            "Matches": 0
+          },
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    78,
+    {
+      "Jz": 81
+    }
+  ],
+  [
+    79,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "spam"
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    80,
+    {
+      "Jmp": 82
+    }
+  ],
+  [
+    81,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "personal"
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ]
+]

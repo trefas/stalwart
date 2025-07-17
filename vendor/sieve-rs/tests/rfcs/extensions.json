@@ -1,0 +1,259 @@
+[
+  [
+    0,
+    {
+      "Require": [
+        "Variables",
+        "Regex"
+      ]
+    }
+  ],
+  [
+    1,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 0
+        },
+        "value": {
+          "Number": {
+            "Integer": 1
+          }
+        }
+      }
+    }
+  ],
+  [
+    2,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 1
+        },
+        "value": {
+          "Number": {
+            "Integer": 2
+          }
+        }
+      }
+    }
+  ],
+  [
+    3,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 2
+        },
+        "value": {
+          "Number": {
+            "Integer": -3
+          }
+        }
+      }
+    }
+  ],
+  [
+    4,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 3
+        },
+        "value": {
+          "Number": {
+            "Float": -4.2
+          }
+        }
+      }
+    }
+  ],
+  [
+    5,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 4
+        },
+        "value": {
+          "Number": {
+            "Float": 5.7
+          }
+        }
+      }
+    }
+  ],
+  [
+    6,
+    {
+      "Test": {
+        "String": {
+          "match_type": "Is",
+          "comparator": "AsciiCaseMap",
+          "source": [
+            {
+              "Text": "%{A * (B / C) - D + E + global.test}"
+            }
+          ],
+          "key_list": [
+            {
+              "Number": {
+                "Integer": 1
+              }
+            }
+          ],
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    7,
+    {
+      "Jz": 9
+    }
+  ],
+  [
+    8,
+    {
+      "Keep": {
+        "flags": []
+      }
+    }
+  ],
+  [
+    9,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 5
+        },
+        "value": {
+          "Text": "The result of 2 + 3 is %{2 + 3}"
+        }
+      }
+    }
+  ],
+  [
+    10,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 6
+        },
+        "value": {
+          "Text": "The result of 2 + 3 is %{2 + 3} and 3 + 4 is %{3 + 4}"
+        }
+      }
+    }
+  ],
+  [
+    11,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 7
+        },
+        "value": {
+          "List": [
+            {
+              "Text": "A is "
+            },
+            {
+              "Variable": {
+                "Local": 0
+              }
+            },
+            {
+              "Text": " and 2 + 2 is %{2 + 2}!"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  [
+    12,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 8
+        },
+        "value": {
+          "Text": "%{}"
+        }
+      }
+    }
+  ],
+  [
+    13,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 9
+        },
+        "value": {
+          "Text": "%{2 + 3"
+        }
+      }
+    }
+  ],
+  [
+    14,
+    {
+      "Test": {
+        "Address": {
+          "header_list": [
+            {
+              "Text": "from"
+            }
+          ],
+          "key_list": [
+            {
+              "Regex": {
+                "expr": "stephan(\\+.*)?@it\\.example\\.com"
+              }
+            },
+            {
+              "Regex": {
+                "expr": "stephan(\\+.*)?@friep\\.example\\.com"
+              }
+            }
+          ],
+          "address_part": "All",
+          "match_type": {
+            "Regex": 0
+          },
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    15,
+    {
+      "Jz": 17
+    }
+  ],
+  [
+    16,
+    {
+      "Keep": {
+        "flags": []
+      }
+    }
+  ]
+]

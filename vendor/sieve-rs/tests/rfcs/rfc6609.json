@@ -1,0 +1,768 @@
+[
+  [
+    0,
+    {
+      "Require": [
+        "Include",
+        "Reject",
+        "FileInto",
+        "Variables",
+        "Relational",
+        "Vacation"
+      ]
+    }
+  ],
+  [
+    1,
+    {
+      "Include": {
+        "location": "Personal",
+        "once": false,
+        "optional": false,
+        "value": {
+          "Text": "always_allow"
+        }
+      }
+    }
+  ],
+  [
+    2,
+    {
+      "Include": {
+        "location": "Global",
+        "once": false,
+        "optional": false,
+        "value": {
+          "Text": "spam_tests"
+        }
+      }
+    }
+  ],
+  [
+    3,
+    {
+      "Include": {
+        "location": "Personal",
+        "once": false,
+        "optional": false,
+        "value": {
+          "Text": "spam_tests"
+        }
+      }
+    }
+  ],
+  [
+    4,
+    {
+      "Include": {
+        "location": "Personal",
+        "once": false,
+        "optional": false,
+        "value": {
+          "Text": "mailing_lists"
+        }
+      }
+    }
+  ],
+  [
+    5,
+    {
+      "Test": {
+        "Address": {
+          "header_list": [
+            {
+              "Text": "from"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "boss@example.com"
+            }
+          ],
+          "address_part": "All",
+          "match_type": "Is",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    6,
+    {
+      "Jz": 9
+    }
+  ],
+  [
+    7,
+    {
+      "Keep": {
+        "flags": []
+      }
+    }
+  ],
+  [
+    8,
+    {
+      "Jmp": 12
+    }
+  ],
+  [
+    9,
+    {
+      "Test": {
+        "Address": {
+          "header_list": [
+            {
+              "Text": "from"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "ceo@example.com"
+            }
+          ],
+          "address_part": "All",
+          "match_type": "Is",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    10,
+    {
+      "Jz": 12
+    }
+  ],
+  [
+    11,
+    {
+      "Keep": {
+        "flags": []
+      }
+    }
+  ],
+  [
+    12,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "Subject"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "XXXX"
+            }
+          ],
+          "match_type": "Contains",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    13,
+    {
+      "Jz": 16
+    }
+  ],
+  [
+    14,
+    {
+      "Reject": {
+        "ereject": false,
+        "reason": {
+          "Text": "Subject XXXX is unacceptable."
+        }
+      }
+    }
+  ],
+  [
+    15,
+    {
+      "Jmp": 19
+    }
+  ],
+  [
+    16,
+    {
+      "Test": {
+        "Address": {
+          "header_list": [
+            {
+              "Text": "from"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "money@example.com"
+            }
+          ],
+          "address_part": "All",
+          "match_type": "Is",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    17,
+    {
+      "Jz": 19
+    }
+  ],
+  [
+    18,
+    {
+      "Reject": {
+        "ereject": false,
+        "reason": {
+          "Text": "Mail from this sender is unwelcome."
+        }
+      }
+    }
+  ],
+  [
+    19,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "List-ID"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "sieve.ietf.org"
+            }
+          ],
+          "match_type": "Is",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    20,
+    {
+      "Jz": 23
+    }
+  ],
+  [
+    21,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "lists.sieve"
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    22,
+    {
+      "Jmp": 26
+    }
+  ],
+  [
+    23,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "List-ID"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "ietf-imapext.imc.org"
+            }
+          ],
+          "match_type": "Is",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    24,
+    {
+      "Jz": 26
+    }
+  ],
+  [
+    25,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "lists.imapext"
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    26,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "Subject"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "$$"
+            }
+          ],
+          "match_type": "Contains",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    27,
+    {
+      "Jnz": 29
+    }
+  ],
+  [
+    28,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "Subject"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "Make money"
+            }
+          ],
+          "match_type": "Contains",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    29,
+    {
+      "Jz": 31
+    }
+  ],
+  [
+    30,
+    {
+      "Reject": {
+        "ereject": false,
+        "reason": {
+          "Text": "No thank you."
+        }
+      }
+    }
+  ],
+  [
+    31,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Global": "test"
+        },
+        "value": {
+          "Text": "$$"
+        }
+      }
+    }
+  ],
+  [
+    32,
+    {
+      "Include": {
+        "location": "Personal",
+        "once": false,
+        "optional": false,
+        "value": {
+          "Text": "subject_tests"
+        }
+      }
+    }
+  ],
+  [
+    33,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Global": "test"
+        },
+        "value": {
+          "Text": "Make money"
+        }
+      }
+    }
+  ],
+  [
+    34,
+    {
+      "Include": {
+        "location": "Personal",
+        "once": false,
+        "optional": false,
+        "value": {
+          "Text": "subject_tests"
+        }
+      }
+    }
+  ],
+  [
+    35,
+    {
+      "Test": {
+        "String": {
+          "match_type": {
+            "Count": "Eq"
+          },
+          "comparator": "AsciiCaseMap",
+          "source": [
+            {
+              "Variable": {
+                "Global": "test_mailbox"
+              }
+            }
+          ],
+          "key_list": [
+            {
+              "Number": {
+                "Integer": 1
+              }
+            }
+          ],
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    36,
+    {
+      "Jz": 39
+    }
+  ],
+  [
+    37,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Variable": {
+            "Global": "test_mailbox"
+          }
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    38,
+    "Stop"
+  ],
+  [
+    39,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "Subject"
+            }
+          ],
+          "key_list": [
+            {
+              "Variable": {
+                "Global": "test"
+              }
+            }
+          ],
+          "match_type": "Contains",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    40,
+    {
+      "Jz": 42
+    }
+  ],
+  [
+    41,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Global": "test_mailbox"
+        },
+        "value": {
+          "List": [
+            {
+              "Text": "spam-"
+            },
+            {
+              "Variable": {
+                "Global": "test"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  [
+    42,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Global": "i_am_on_vacation"
+        },
+        "value": {
+          "Number": {
+            "Integer": 1
+          }
+        }
+      }
+    }
+  ],
+  [
+    43,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Global": "i_am_on_vacation"
+        },
+        "value": {
+          "Number": {
+            "Integer": 1
+          }
+        }
+      }
+    }
+  ],
+  [
+    44,
+    {
+      "Test": {
+        "String": {
+          "match_type": "Is",
+          "comparator": "AsciiCaseMap",
+          "source": [
+            {
+              "Variable": {
+                "Global": "i_am_on_vacation"
+              }
+            }
+          ],
+          "key_list": [
+            {
+              "Number": {
+                "Integer": 1
+              }
+            }
+          ],
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    45,
+    {
+      "Jz": 49
+    }
+  ],
+  [
+    46,
+    {
+      "Test": {
+        "Vacation": {
+          "addresses": [],
+          "period": "Default",
+          "handle": null,
+          "reason": {
+            "Text": "It's true, I am on vacation."
+          }
+        }
+      }
+    }
+  ],
+  [
+    47,
+    {
+      "Jz": 49
+    }
+  ],
+  [
+    48,
+    {
+      "Vacation": {
+        "subject": null,
+        "from": null,
+        "mime": false,
+        "fcc": null,
+        "reason": {
+          "Text": "It's true, I am on vacation."
+        }
+      }
+    }
+  ],
+  [
+    49,
+    {
+      "Test": {
+        "String": {
+          "match_type": "Is",
+          "comparator": "AsciiCaseMap",
+          "source": [
+            {
+              "Variable": {
+                "Global": "i_am_on_vacation"
+              }
+            }
+          ],
+          "key_list": [
+            {
+              "Number": {
+                "Integer": 1
+              }
+            }
+          ],
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    50,
+    {
+      "Jz": 54
+    }
+  ],
+  [
+    51,
+    {
+      "Test": {
+        "Vacation": {
+          "addresses": [],
+          "period": "Default",
+          "handle": null,
+          "reason": {
+            "Text": "It's true, I am on vacation."
+          }
+        }
+      }
+    }
+  ],
+  [
+    52,
+    {
+      "Jz": 54
+    }
+  ],
+  [
+    53,
+    {
+      "Vacation": {
+        "subject": null,
+        "from": null,
+        "mime": false,
+        "fcc": null,
+        "reason": {
+          "Text": "It's true, I am on vacation."
+        }
+      }
+    }
+  ],
+  [
+    54,
+    {
+      "Set": {
+        "modifiers": [
+          {
+            "Replace": {
+              "find": {
+                "Text": "."
+              },
+              "replace": {
+                "Text": "-"
+              }
+            }
+          }
+        ],
+        "name": {
+          "Envelope": "From"
+        },
+        "value": {
+          "Text": "t.e.s.t@domain.com"
+        }
+      }
+    }
+  ]
+]

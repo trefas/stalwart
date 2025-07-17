@@ -1,0 +1,496 @@
+[
+  [
+    0,
+    {
+      "Require": [
+        "FileInto",
+        "Reject",
+        "Mailbox",
+        "MboxMetadata",
+        "Vacation",
+        "ServerMetadata",
+        "Variables",
+        "Envelope",
+        "Enotify"
+      ]
+    }
+  ],
+  [
+    1,
+    {
+      "Test": {
+        "MailboxExists": {
+          "mailbox_names": [
+            {
+              "Text": "Partners"
+            }
+          ],
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    2,
+    {
+      "Jz": 5
+    }
+  ],
+  [
+    3,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": true,
+        "folder": {
+          "Text": "Partners"
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    4,
+    {
+      "Jmp": 6
+    }
+  ],
+  [
+    5,
+    {
+      "Reject": {
+        "ereject": false,
+        "reason": {
+          "Text": "This message was not accepted by the Mailstore"
+        }
+      }
+    }
+  ],
+  [
+    6,
+    {
+      "Test": {
+        "Metadata": {
+          "match_type": "Is",
+          "comparator": "AsciiCaseMap",
+          "medatata": {
+            "Mailbox": {
+              "name": {
+                "Text": "INBOX"
+              },
+              "annotation": {
+                "Text": "/private/vendor/vendor.isode/auto-replies"
+              }
+            }
+          },
+          "key_list": [
+            {
+              "Text": "on"
+            }
+          ],
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    7,
+    {
+      "Jz": 11
+    }
+  ],
+  [
+    8,
+    {
+      "Test": {
+        "Vacation": {
+          "addresses": [],
+          "period": "Default",
+          "handle": null,
+          "reason": {
+            "Text": "I'm away on holidays till March 2009.\nExpect a delay.\n"
+          }
+        }
+      }
+    }
+  ],
+  [
+    9,
+    {
+      "Jz": 11
+    }
+  ],
+  [
+    10,
+    {
+      "Vacation": {
+        "subject": null,
+        "from": null,
+        "mime": false,
+        "fcc": null,
+        "reason": {
+          "Text": "I'm away on holidays till March 2009.\nExpect a delay.\n"
+        }
+      }
+    }
+  ],
+  [
+    11,
+    {
+      "Test": {
+        "Metadata": {
+          "match_type": {
+            "Matches": 1
+          },
+          "comparator": "AsciiCaseMap",
+          "medatata": {
+            "Server": {
+              "annotation": {
+                "Text": "/private/vendor/vendor.isode/notification-uri"
+              }
+            }
+          },
+          "key_list": [
+            {
+              "Text": "*"
+            }
+          ],
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    12,
+    {
+      "Jz": 15
+    }
+  ],
+  [
+    13,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 0
+        },
+        "value": {
+          "Variable": {
+            "Match": 0
+          }
+        }
+      }
+    }
+  ],
+  [
+    14,
+    {
+      "Clear": {
+        "local_vars_idx": 0,
+        "local_vars_num": 1,
+        "match_vars": 0
+      }
+    }
+  ],
+  [
+    15,
+    {
+      "Test": {
+        "String": {
+          "match_type": "Is",
+          "comparator": "AsciiCaseMap",
+          "source": [
+            {
+              "Text": ""
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "none"
+            }
+          ],
+          "is_not": true
+        }
+      }
+    }
+  ],
+  [
+    16,
+    {
+      "Jz": 31
+    }
+  ],
+  [
+    17,
+    {
+      "Test": {
+        "Envelope": {
+          "envelope_list": [
+            "From"
+          ],
+          "key_list": [
+            {
+              "Text": "*"
+            }
+          ],
+          "address_part": "All",
+          "match_type": {
+            "Matches": 2
+          },
+          "comparator": "AsciiCaseMap",
+          "zone": null,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    18,
+    {
+      "Jz": 21
+    }
+  ],
+  [
+    19,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 0
+        },
+        "value": {
+          "List": [
+            {
+              "Text": " [really: "
+            },
+            {
+              "Variable": {
+                "Match": 1
+              }
+            },
+            {
+              "Text": "]"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  [
+    20,
+    {
+      "Clear": {
+        "local_vars_idx": 0,
+        "local_vars_num": 1,
+        "match_vars": 0
+      }
+    }
+  ],
+  [
+    21,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "Subject"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "*"
+            }
+          ],
+          "match_type": {
+            "Matches": 2
+          },
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    22,
+    {
+      "Jz": 25
+    }
+  ],
+  [
+    23,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 0
+        },
+        "value": {
+          "Variable": {
+            "Match": 1
+          }
+        }
+      }
+    }
+  ],
+  [
+    24,
+    {
+      "Clear": {
+        "local_vars_idx": 0,
+        "local_vars_num": 1,
+        "match_vars": 0
+      }
+    }
+  ],
+  [
+    25,
+    {
+      "Test": {
+        "Address": {
+          "header_list": [
+            {
+              "Text": "from"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "*"
+            }
+          ],
+          "address_part": "All",
+          "match_type": {
+            "Matches": 2
+          },
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    26,
+    {
+      "Jz": 29
+    }
+  ],
+  [
+    27,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 0
+        },
+        "value": {
+          "Variable": {
+            "Match": 1
+          }
+        }
+      }
+    }
+  ],
+  [
+    28,
+    {
+      "Clear": {
+        "local_vars_idx": 0,
+        "local_vars_num": 1,
+        "match_vars": 0
+      }
+    }
+  ],
+  [
+    29,
+    {
+      "Notify": {
+        "from": null,
+        "importance": null,
+        "options": [],
+        "message": {
+          "Text": ": "
+        },
+        "fcc": null,
+        "method": {
+          "Text": ""
+        }
+      }
+    }
+  ],
+  [
+    30,
+    {
+      "Clear": {
+        "local_vars_idx": 0,
+        "local_vars_num": 0,
+        "match_vars": 2
+      }
+    }
+  ],
+  [
+    31,
+    {
+      "Test": {
+        "MetadataExists": {
+          "mailbox": null,
+          "annotation_names": [
+            {
+              "Text": "hello"
+            },
+            {
+              "Text": "world"
+            }
+          ],
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    32,
+    {
+      "Jz": 34
+    }
+  ],
+  [
+    33,
+    "Stop"
+  ],
+  [
+    34,
+    {
+      "Test": {
+        "MetadataExists": {
+          "mailbox": {
+            "Text": "INBOX"
+          },
+          "annotation_names": [
+            {
+              "Text": "hi"
+            },
+            {
+              "Text": "there"
+            }
+          ],
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    35,
+    {
+      "Jz": 37
+    }
+  ],
+  [
+    36,
+    "Discard"
+  ]
+]

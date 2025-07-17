@@ -1,0 +1,41 @@
+require "vnd.stalwart.testsuite";
+
+require "relational";
+require "comparator-i;ascii-numeric";
+
+/*
+ * Test parser's recover capability
+ */
+
+/*
+ * Commands
+ */
+
+/* Missing semicolon */
+
+test "Missing semicolons" {
+	if test_script_compile "recover/commands-semicolon.sieve" {
+		test_fail "compile should have failed.";
+	}
+
+}
+
+/* End of block recovery*/
+
+test "Missing semicolon at end of block" {
+	if test_script_compile "recover/commands-endblock.sieve" {
+		test_fail "compile should have failed.";
+	}
+
+}
+
+/*
+ * Tests
+ */
+
+test "Spurious comma at end of test list" {
+	if test_script_compile "recover/tests-endcomma.sieve" {
+		test_fail "compile should have failed.";
+	}
+
+}

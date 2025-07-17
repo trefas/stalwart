@@ -1,0 +1,282 @@
+[
+  [
+    0,
+    {
+      "Require": [
+        "Relational",
+        {
+          "Comparator": "AsciiNumeric"
+        },
+        "FileInto"
+      ]
+    }
+  ],
+  [
+    1,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "x-priority"
+            }
+          ],
+          "key_list": [
+            {
+              "Number": {
+                "Integer": 3
+              }
+            }
+          ],
+          "match_type": {
+            "Value": "Lt"
+          },
+          "comparator": "AsciiNumeric",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    2,
+    {
+      "Jz": 5
+    }
+  ],
+  [
+    3,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "Priority"
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    4,
+    {
+      "Jmp": 14
+    }
+  ],
+  [
+    5,
+    {
+      "Test": {
+        "Address": {
+          "header_list": [
+            {
+              "Text": "to"
+            }
+          ],
+          "key_list": [
+            {
+              "Number": {
+                "Integer": 5
+              }
+            }
+          ],
+          "address_part": "All",
+          "match_type": {
+            "Count": "Gt"
+          },
+          "comparator": "AsciiNumeric",
+          "index": null,
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    6,
+    {
+      "Jz": 9
+    }
+  ],
+  [
+    7,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "SPAM"
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    8,
+    {
+      "Jmp": 14
+    }
+  ],
+  [
+    9,
+    {
+      "Test": {
+        "Address": {
+          "header_list": [
+            {
+              "Text": "from"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "M"
+            }
+          ],
+          "address_part": "All",
+          "match_type": {
+            "Value": "Gt"
+          },
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    10,
+    {
+      "Jz": 13
+    }
+  ],
+  [
+    11,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "From N-Z"
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    12,
+    {
+      "Jmp": 14
+    }
+  ],
+  [
+    13,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "From A-M"
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    14,
+    {
+      "Test": {
+        "Address": {
+          "header_list": [
+            {
+              "Text": "to"
+            },
+            {
+              "Text": "cc"
+            }
+          ],
+          "key_list": [
+            {
+              "Number": {
+                "Integer": 1
+              }
+            }
+          ],
+          "address_part": "All",
+          "match_type": {
+            "Count": "Eq"
+          },
+          "comparator": "AsciiNumeric",
+          "index": null,
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    15,
+    {
+      "Jz": 17
+    }
+  ],
+  [
+    16,
+    {
+      "Test": {
+        "Address": {
+          "header_list": [
+            {
+              "Text": "to"
+            },
+            {
+              "Text": "cc"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "me@foo.example.com"
+            }
+          ],
+          "address_part": "All",
+          "match_type": "Is",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    17,
+    {
+      "Jz": 19
+    }
+  ],
+  [
+    18,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "Only me"
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ]
+]

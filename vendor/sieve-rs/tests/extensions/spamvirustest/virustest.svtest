@@ -1,0 +1,118 @@
+require "vnd.stalwart.testsuite";
+require "virustest";
+require "relational";
+require "comparator-i;ascii-numeric";
+require "variables";
+
+/*
+ * Text
+ */
+
+test_set "message" text:
+From: legitimate@example.com
+To: victim@dovecot.example.net
+Subject: Viral
+
+Test!
+.
+;
+
+test_config_set "sieve_virus_status" "5";
+
+test "Text: 5" {
+	if virustest :is "0" {
+		test_fail "virustest not configured or test failed";
+	}
+
+	if not virustest :value "eq" "5" {
+		if virustest :matches "*" { }
+		test_fail "wrong virus value produced: ${1}";
+	}
+}
+
+test_config_set "sieve_virus_status" "4";
+
+test "Text: 4" {
+	if virustest :is "0" {
+		test_fail "virustest not configured or test failed";
+	}
+
+	if not virustest :value "eq" "4" {
+		if virustest :matches "*" { }
+		test_fail "wrong virus value produced: ${1}";
+	}
+}
+
+test_config_set "sieve_virus_status" "3";
+
+test "Text: 3" {
+	if virustest :is "0" {
+		test_fail "virustest not configured or test failed";
+	}
+
+	if not virustest :value "eq" "3" {
+		if virustest :matches "*" { }
+		test_fail "wrong virus value produced: ${1}";
+	}
+}
+
+test_config_set "sieve_virus_status" "2";
+
+test "Text: 2" {
+	if virustest :is "0" {
+		test_fail "virustest not configured or test failed";
+	}
+
+	if not virustest :value "eq" "2" {
+		if virustest :matches "*" { }
+		test_fail "wrong virus value produced: ${1}";
+	}
+}
+
+test_config_set "sieve_virus_status" "1";
+
+test "Text: 1" {
+	if virustest :is "0" {
+		test_fail "virustest not configured or test failed";
+	}
+
+	if not virustest :value "eq" "1" {
+		if virustest :matches "*" { }
+		test_fail "wrong virus value produced: ${1}";
+	}
+}
+
+test_config_set "sieve_virus_status" "1";
+
+test "Text: regex: 1" {
+	if virustest :is "0" {
+		test_fail "virustest not configured or test failed";
+	}
+
+	if not virustest :value "eq" "1" {
+		if virustest :matches "*" { }
+		test_fail "wrong virus value produced: ${1}";
+	}
+}
+
+test_config_set "sieve_virus_status" "5";
+
+test "Text: regex: 5" {
+	if virustest :is "0" {
+		test_fail "virustest not configured or test failed";
+	}
+
+	if not virustest :value "eq" "5" {
+		if virustest :matches "*" { }
+		test_fail "wrong virus value produced: ${1}";
+	}
+}
+
+test_config_set "sieve_virus_status" "0";
+
+test "Text: regex: 0" {
+	if not virustest :is "0" {
+		if virustest :matches "*" { }
+		test_fail "wrong virus value produced: ${1}";
+	}
+}

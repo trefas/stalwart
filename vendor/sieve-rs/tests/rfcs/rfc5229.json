@@ -1,0 +1,594 @@
+[
+  [
+    0,
+    {
+      "Require": [
+        "EncodedCharacter",
+        "Variables",
+        "FileInto"
+      ]
+    }
+  ],
+  [
+    1,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 0
+        },
+        "value": {
+          "Text": "$"
+        }
+      }
+    }
+  ],
+  [
+    2,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 1
+        },
+        "value": {
+          "List": [
+            {
+              "Text": "regarding "
+            },
+            {
+              "Variable": {
+                "Local": 0
+              }
+            },
+            {
+              "Text": "{beep}"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  [
+    3,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 2
+        },
+        "value": {
+          "Text": "Ethelbert"
+        }
+      }
+    }
+  ],
+  [
+    4,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "Subject"
+            }
+          ],
+          "key_list": [
+            {
+              "List": [
+                {
+                  "Text": "dear "
+                },
+                {
+                  "Variable": {
+                    "Local": 2
+                  }
+                }
+              ]
+            }
+          ],
+          "match_type": "Contains",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    5,
+    {
+      "Jz": 6
+    }
+  ],
+  [
+    6,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "List-ID"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "*<*@*"
+            }
+          ],
+          "match_type": {
+            "Matches": 6
+          },
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    7,
+    {
+      "Jz": 10
+    }
+  ],
+  [
+    8,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "List": [
+            {
+              "Text": "INBOX.lists."
+            },
+            {
+              "Variable": {
+                "Match": 2
+              }
+            }
+          ]
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    9,
+    "Stop"
+  ],
+  [
+    10,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "Subject"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "[*] *"
+            }
+          ],
+          "match_type": {
+            "Matches": 6
+          },
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    11,
+    {
+      "Jz": 14
+    }
+  ],
+  [
+    12,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "List": [
+            {
+              "Text": "INBOX.lists."
+            },
+            {
+              "Variable": {
+                "Match": 1
+              }
+            }
+          ]
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    13,
+    "Stop"
+  ],
+  [
+    14,
+    {
+      "Test": {
+        "Address": {
+          "header_list": [
+            {
+              "Text": "To"
+            },
+            {
+              "Text": "Cc"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "coyote@**.com"
+            },
+            {
+              "Text": "wile@**.com"
+            }
+          ],
+          "address_part": "All",
+          "match_type": {
+            "Matches": 4
+          },
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    15,
+    {
+      "Jz": 19
+    }
+  ],
+  [
+    16,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "List": [
+            {
+              "Text": "INBOX.business."
+            },
+            {
+              "Variable": {
+                "Match": 2
+              }
+            }
+          ]
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    17,
+    "Stop"
+  ],
+  [
+    18,
+    {
+      "Jmp": 19
+    }
+  ],
+  [
+    19,
+    {
+      "Test": "True"
+    }
+  ],
+  [
+    20,
+    {
+      "Jnz": 22
+    }
+  ],
+  [
+    21,
+    {
+      "Test": {
+        "Address": {
+          "header_list": [
+            {
+              "Text": "To"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "*.com"
+            }
+          ],
+          "address_part": "Domain",
+          "match_type": {
+            "Matches": 0
+          },
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    22,
+    {
+      "Jz": 24
+    }
+  ],
+  [
+    23,
+    "Stop"
+  ],
+  [
+    24,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 3
+        },
+        "value": {
+          "Text": "Mr"
+        }
+      }
+    }
+  ],
+  [
+    25,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 4
+        },
+        "value": {
+          "Text": "Wile"
+        }
+      }
+    }
+  ],
+  [
+    26,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 5
+        },
+        "value": {
+          "Text": "Coyote"
+        }
+      }
+    }
+  ],
+  [
+    27,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 6
+        },
+        "value": {
+          "List": [
+            {
+              "Text": "Dear "
+            },
+            {
+              "Variable": {
+                "Local": 3
+              }
+            },
+            {
+              "Text": " "
+            },
+            {
+              "Variable": {
+                "Local": 5
+              }
+            },
+            {
+              "Text": ",\nI'm out, please leave a message after the meep.\n"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  [
+    28,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 7
+        },
+        "value": {
+          "Text": "juMBlEd lETteRS"
+        }
+      }
+    }
+  ],
+  [
+    29,
+    {
+      "Set": {
+        "modifiers": [
+          "Length"
+        ],
+        "name": {
+          "Local": 8
+        },
+        "value": {
+          "Variable": {
+            "Local": 7
+          }
+        }
+      }
+    }
+  ],
+  [
+    30,
+    {
+      "Set": {
+        "modifiers": [
+          "Lower"
+        ],
+        "name": {
+          "Local": 8
+        },
+        "value": {
+          "Variable": {
+            "Local": 7
+          }
+        }
+      }
+    }
+  ],
+  [
+    31,
+    {
+      "Set": {
+        "modifiers": [
+          "UpperFirst"
+        ],
+        "name": {
+          "Local": 8
+        },
+        "value": {
+          "Variable": {
+            "Local": 7
+          }
+        }
+      }
+    }
+  ],
+  [
+    32,
+    {
+      "Set": {
+        "modifiers": [
+          "Lower",
+          "UpperFirst"
+        ],
+        "name": {
+          "Local": 8
+        },
+        "value": {
+          "Variable": {
+            "Local": 7
+          }
+        }
+      }
+    }
+  ],
+  [
+    33,
+    {
+      "Set": {
+        "modifiers": [
+          "QuoteWildcard"
+        ],
+        "name": {
+          "Local": 8
+        },
+        "value": {
+          "Text": "Rock*"
+        }
+      }
+    }
+  ],
+  [
+    34,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 9
+        },
+        "value": {
+          "List": [
+            {
+              "Variable": {
+                "Local": 9
+              }
+            },
+            {
+              "Text": " pending"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  [
+    35,
+    {
+      "Test": {
+        "String": {
+          "match_type": {
+            "Matches": 0
+          },
+          "comparator": "AsciiCaseMap",
+          "source": [
+            {
+              "List": [
+                {
+                  "Text": " "
+                },
+                {
+                  "Variable": {
+                    "Local": 9
+                  }
+                },
+                {
+                  "Text": " "
+                }
+              ]
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "* pending *"
+            }
+          ],
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    36,
+    {
+      "Jz": 37
+    }
+  ]
+]

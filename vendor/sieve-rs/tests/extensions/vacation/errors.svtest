@@ -1,0 +1,12 @@
+require "vnd.stalwart.testsuite";
+
+require "relational";
+require "comparator-i;ascii-numeric";
+
+test "Action conflicts: reject <-> vacation" {
+	if not test_script_compile "errors/conflict-reject.sieve" {
+		test_fail "compile failed";
+	}
+
+}
+

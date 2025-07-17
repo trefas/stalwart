@@ -1,0 +1,22 @@
+require "vnd.stalwart.testsuite";
+require "include";
+require "variables";
+
+global "result";
+set "result" "";
+
+test "Included Optional" {
+	include :optional "optional-1";
+	include :optional "optional-2";
+
+	if not string "${result}" " ONE TWO" {
+		test_fail "unexpected result value: ${result}";
+	}
+
+	# missing
+	include :optional "optional-3";
+
+	if not string "${result}" " ONE TWO" {
+		test_fail "unexpected result value after missing script: ${result}";
+	}
+}

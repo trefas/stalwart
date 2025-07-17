@@ -1,0 +1,87 @@
+require "vnd.stalwart.testsuite";
+require "vnd.stalwart.expressions";
+require "relational";
+require "body";
+require "foreverypart";
+require "variables";
+require "extracttext";
+
+test_set "message" text:
+From: "Cosmo Kramer" <kramer@kramerica.com>
+From: George Constanza <george@yankees.com>
+From: Art Vandelay <art@vandelay.com> (Vandelay Industries)
+To: "Colleagues": "James Smythe" <james@vandelay.com>; Friends:
+    jane@example.com, =?UTF-8?Q?John_Sm=C3=AEth?= <john@example.com>;
+Date: Sat, 20 Nov 2021 14:22:01 -0800
+Subject: Is dinner ready?
+
+Hi.
+
+We lost the game. 
+Are you hungry yet?
+
+Joe.
+.
+;
+
+
+test "Functions" {
+    if not eval "len(header.subject) == 16" {
+        test_fail "len(header.subject) is {len(header.subject)}";
+    }
+
+    if not eval "len(header.subject) == 16" {
+        test_fail "eval len(header.subject) is {len(header.subject) == 16}";
+    }
+
+    if not eval "char_count(trim(header.to[*].name[*])) > 20" {
+        test_fail "eval char_count(trim(header.to[*].name[*])) (${char_count(trim(header.to[*].name[*]))}) is {char_count(trim(header.to[*].name[*])) > 20}";
+    }
+
+    set "my_untrimmed_text" "  hello world   ";
+    if string :is "${trim(my_untrimmed_text)}" "${my_untrimmed_text}" {
+        test_fail "trim() failed";
+    }
+
+    if eval "len(trim(my_untrimmed_text)) == len(my_untrimmed_text)" {
+        test_fail "chained functions failed {len(trim(my_untrimmed_text))} != {len(my_untrimmed_text)}";
+    }
+
+    if eval "len(trim(my_untrimmed_text)) == len(my_untrimmed_text)" {
+        test_fail "chained functions failed {len(trim(my_untrimmed_text))} != {len(my_untrimmed_text)}";
+    }
+
+    if not eval "contains(my_untrimmed_text, 'hello')" {
+        test_fail "contains() failed ${my_untrimmed_text}";
+    }
+
+    if eval "concat_three(trim(my_untrimmed_text), 'test', len(trim(header.subject)) * 2 / 6 + 38) != 'hello world-test-43.333333333333336'" {
+        test_fail "concat_three() failed {concat_three(trim(my_untrimmed_text), 'test', len(trim(header.subject)) * 2 / 6 + 38)}";
+    }
+
+    if eval "'hello' + 'world' + 123 != 'helloworld123'" {
+        test_fail "'hello' + 'world' + 123 != 'helloworld123' ({'hello' + 'world' + 123})";
+    }
+
+    if eval "'2' != 2" {
+        test_fail "'2' != 2";
+    }
+
+    if not eval "'2' == 2" {
+        test_fail "'2' == 2";
+    }
+
+    if not eval "'3' > 2 && '2' < 3" {
+        test_fail "'3' > 2 && '2' < 3";
+    }
+
+    if eval "'hello' != trim(' hello ')" {
+        test_fail "'hello' != trim(' hello ')";
+    }
+
+    let "eval_concat" "trim(my_untrimmed_text) + '!!!'";
+    if eval "eval_concat != 'hello world!!!'" {
+        test_fail "eval_concat != 'hello world!!!' ({eval_concat})";
+    }
+
+}

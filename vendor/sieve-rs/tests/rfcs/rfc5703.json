@@ -1,0 +1,1180 @@
+[
+  [
+    0,
+    {
+      "Require": [
+        "Mime",
+        "ForEveryPart",
+        "FileInto",
+        "Replace",
+        "Enclose",
+        "Include",
+        "Variables",
+        "ExtractText"
+      ]
+    }
+  ],
+  [
+    1,
+    {
+      "Test": "True"
+    }
+  ],
+  [
+    2,
+    {
+      "Jz": 4
+    }
+  ],
+  [
+    3,
+    "Discard"
+  ],
+  [
+    4,
+    {
+      "Test": "True"
+    }
+  ],
+  [
+    5,
+    {
+      "Jz": 9
+    }
+  ],
+  [
+    6,
+    {
+      "Test": "True"
+    }
+  ],
+  [
+    7,
+    {
+      "Jz": 9
+    }
+  ],
+  [
+    8,
+    {
+      "Test": "True"
+    }
+  ],
+  [
+    9,
+    {
+      "Jz": 11
+    }
+  ],
+  [
+    10,
+    "Discard"
+  ],
+  [
+    11,
+    {
+      "Test": "True"
+    }
+  ],
+  [
+    12,
+    {
+      "Jnz": 16
+    }
+  ],
+  [
+    13,
+    {
+      "Test": "False"
+    }
+  ],
+  [
+    14,
+    {
+      "Jnz": 16
+    }
+  ],
+  [
+    15,
+    {
+      "Test": "False"
+    }
+  ],
+  [
+    16,
+    {
+      "Jz": 18
+    }
+  ],
+  [
+    17,
+    "Discard"
+  ],
+  [
+    18,
+    {
+      "Test": "False"
+    }
+  ],
+  [
+    19,
+    {
+      "Jz": 23
+    }
+  ],
+  [
+    20,
+    {
+      "Test": "True"
+    }
+  ],
+  [
+    21,
+    {
+      "Jz": 23
+    }
+  ],
+  [
+    22,
+    {
+      "Test": "True"
+    }
+  ],
+  [
+    23,
+    {
+      "Jz": 25
+    }
+  ],
+  [
+    24,
+    "Stop"
+  ],
+  [
+    25,
+    {
+      "Test": "False"
+    }
+  ],
+  [
+    26,
+    {
+      "Jnz": 30
+    }
+  ],
+  [
+    27,
+    {
+      "Test": "True"
+    }
+  ],
+  [
+    28,
+    {
+      "Jnz": 30
+    }
+  ],
+  [
+    29,
+    {
+      "Test": "True"
+    }
+  ],
+  [
+    30,
+    {
+      "Jz": 32
+    }
+  ],
+  [
+    31,
+    "Stop"
+  ],
+  [
+    32,
+    "ForEveryPartPush"
+  ],
+  [
+    33,
+    {
+      "ForEveryPart": {
+        "jz_pos": 76
+      }
+    }
+  ],
+  [
+    34,
+    "ForEveryPartPush"
+  ],
+  [
+    35,
+    {
+      "ForEveryPart": {
+        "jz_pos": 63
+      }
+    }
+  ],
+  [
+    36,
+    "ForEveryPartPush"
+  ],
+  [
+    37,
+    {
+      "ForEveryPart": {
+        "jz_pos": 60
+      }
+    }
+  ],
+  [
+    38,
+    "ForEveryPartPush"
+  ],
+  [
+    39,
+    {
+      "ForEveryPart": {
+        "jz_pos": 57
+      }
+    }
+  ],
+  [
+    40,
+    "ForEveryPartPush"
+  ],
+  [
+    41,
+    {
+      "ForEveryPart": {
+        "jz_pos": 47
+      }
+    }
+  ],
+  [
+    42,
+    {
+      "ForEveryPartPop": 5
+    }
+  ],
+  [
+    43,
+    {
+      "Jmp": 76
+    }
+  ],
+  [
+    44,
+    {
+      "ForEveryPartPop": 5
+    }
+  ],
+  [
+    45,
+    "Return"
+  ],
+  [
+    46,
+    {
+      "Jmp": 41
+    }
+  ],
+  [
+    47,
+    "ForEveryPartPush"
+  ],
+  [
+    48,
+    {
+      "ForEveryPart": {
+        "jz_pos": 54
+      }
+    }
+  ],
+  [
+    49,
+    {
+      "ForEveryPartPop": 4
+    }
+  ],
+  [
+    50,
+    {
+      "Jmp": 63
+    }
+  ],
+  [
+    51,
+    {
+      "ForEveryPartPop": 5
+    }
+  ],
+  [
+    52,
+    "Return"
+  ],
+  [
+    53,
+    {
+      "Jmp": 48
+    }
+  ],
+  [
+    54,
+    {
+      "ForEveryPartPop": 4
+    }
+  ],
+  [
+    55,
+    {
+      "Jmp": 76
+    }
+  ],
+  [
+    56,
+    {
+      "Jmp": 39
+    }
+  ],
+  [
+    57,
+    {
+      "ForEveryPartPop": 3
+    }
+  ],
+  [
+    58,
+    {
+      "Jmp": 76
+    }
+  ],
+  [
+    59,
+    {
+      "Jmp": 37
+    }
+  ],
+  [
+    60,
+    {
+      "ForEveryPartPop": 2
+    }
+  ],
+  [
+    61,
+    {
+      "Jmp": 76
+    }
+  ],
+  [
+    62,
+    {
+      "Jmp": 35
+    }
+  ],
+  [
+    63,
+    {
+      "Test": "True"
+    }
+  ],
+  [
+    64,
+    {
+      "Jz": 67
+    }
+  ],
+  [
+    65,
+    "Discard"
+  ],
+  [
+    66,
+    {
+      "Jmp": 72
+    }
+  ],
+  [
+    67,
+    {
+      "Test": "False"
+    }
+  ],
+  [
+    68,
+    {
+      "Jz": 71
+    }
+  ],
+  [
+    69,
+    "Stop"
+  ],
+  [
+    70,
+    {
+      "Jmp": 72
+    }
+  ],
+  [
+    71,
+    "Discard"
+  ],
+  [
+    72,
+    {
+      "Keep": {
+        "flags": []
+      }
+    }
+  ],
+  [
+    73,
+    {
+      "ForEveryPartPop": 1
+    }
+  ],
+  [
+    74,
+    {
+      "Jmp": 76
+    }
+  ],
+  [
+    75,
+    {
+      "Jmp": 33
+    }
+  ],
+  [
+    76,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "Content-Type"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "image"
+            }
+          ],
+          "match_type": "Is",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "Type",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    77,
+    {
+      "Jz": 79
+    }
+  ],
+  [
+    78,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "INBOX.images"
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    79,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "Content-Type"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "text/html"
+            }
+          ],
+          "match_type": "Is",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "ContentType",
+          "mime_anychild": true,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    80,
+    {
+      "Jz": 82
+    }
+  ],
+  [
+    81,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "INBOX.html"
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    82,
+    "ForEveryPartPush"
+  ],
+  [
+    83,
+    {
+      "ForEveryPart": {
+        "jz_pos": 94
+      }
+    }
+  ],
+  [
+    84,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "Content-Disposition"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "important"
+            }
+          ],
+          "match_type": "Contains",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": {
+            "Param": [
+              {
+                "Text": "filename"
+              }
+            ]
+          },
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    85,
+    {
+      "Jz": 89
+    }
+  ],
+  [
+    86,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "Content-Type"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "pdf"
+            }
+          ],
+          "match_type": "Is",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "Subtype",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    87,
+    {
+      "Jz": 89
+    }
+  ],
+  [
+    88,
+    {
+      "Test": {
+        "Size": {
+          "over": true,
+          "limit": 102400,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    89,
+    {
+      "Jz": 93
+    }
+  ],
+  [
+    90,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "INBOX.important"
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    91,
+    {
+      "ForEveryPartPop": 1
+    }
+  ],
+  [
+    92,
+    {
+      "Jmp": 94
+    }
+  ],
+  [
+    93,
+    {
+      "Jmp": 83
+    }
+  ],
+  [
+    94,
+    {
+      "Test": {
+        "Address": {
+          "header_list": [
+            {
+              "Text": "content-from"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "tim@example.com"
+            }
+          ],
+          "address_part": "All",
+          "match_type": "Is",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    95,
+    {
+      "Jz": 97
+    }
+  ],
+  [
+    96,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "INBOX.part-from-tim"
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    97,
+    {
+      "Test": {
+        "Exists": {
+          "header_names": [
+            {
+              "Text": "content-md5"
+            }
+          ],
+          "mime_anychild": true,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    98,
+    {
+      "Jz": 100
+    }
+  ],
+  [
+    99,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "INBOX.md5"
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    100,
+    "ForEveryPartPush"
+  ],
+  [
+    101,
+    {
+      "ForEveryPart": {
+        "jz_pos": 108
+      }
+    }
+  ],
+  [
+    102,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "Content-Type"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "application/exe"
+            }
+          ],
+          "match_type": "Is",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "ContentType",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    103,
+    {
+      "Jnz": 105
+    }
+  ],
+  [
+    104,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "Content-Type"
+            },
+            {
+              "Text": "Content-Disposition"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "*.com"
+            }
+          ],
+          "match_type": {
+            "Matches": 0
+          },
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": {
+            "Param": [
+              {
+                "Text": "filename"
+              }
+            ]
+          },
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    105,
+    {
+      "Jz": 107
+    }
+  ],
+  [
+    106,
+    {
+      "Replace": {
+        "subject": null,
+        "from": null,
+        "replacement": {
+          "Text": "Executable attachment removed by user filter"
+        },
+        "mime": false
+      }
+    }
+  ],
+  [
+    107,
+    {
+      "Jmp": 101
+    }
+  ],
+  [
+    108,
+    "ForEveryPartPush"
+  ],
+  [
+    109,
+    {
+      "ForEveryPart": {
+        "jz_pos": 116
+      }
+    }
+  ],
+  [
+    110,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "Content-Type"
+            },
+            {
+              "Text": "Content-Disposition"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "*.com"
+            },
+            {
+              "Text": "*.exe"
+            },
+            {
+              "Text": "*.vbs"
+            },
+            {
+              "Text": "*.scr"
+            },
+            {
+              "Text": "*.pif"
+            },
+            {
+              "Text": "*.hta"
+            },
+            {
+              "Text": "*.bat"
+            },
+            {
+              "Text": "*.zip"
+            }
+          ],
+          "match_type": {
+            "Matches": 0
+          },
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": {
+            "Param": [
+              {
+                "Text": "filename"
+              }
+            ]
+          },
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    111,
+    {
+      "Jz": 115
+    }
+  ],
+  [
+    112,
+    {
+      "Enclose": {
+        "subject": {
+          "Text": "Warning"
+        },
+        "headers": [],
+        "value": {
+          "Text": "Warning\n"
+        }
+      }
+    }
+  ],
+  [
+    113,
+    {
+      "ForEveryPartPop": 1
+    }
+  ],
+  [
+    114,
+    {
+      "Jmp": 116
+    }
+  ],
+  [
+    115,
+    {
+      "Jmp": 109
+    }
+  ],
+  [
+    116,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "from"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "boss@example.org"
+            }
+          ],
+          "match_type": "Contains",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    117,
+    {
+      "Jz": 134
+    }
+  ],
+  [
+    118,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "Subject"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "*"
+            }
+          ],
+          "match_type": {
+            "Matches": 2
+          },
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    119,
+    {
+      "Jz": 122
+    }
+  ],
+  [
+    120,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 0
+        },
+        "value": {
+          "Variable": {
+            "Match": 1
+          }
+        }
+      }
+    }
+  ],
+  [
+    121,
+    {
+      "Clear": {
+        "local_vars_idx": 0,
+        "local_vars_num": 1,
+        "match_vars": 0
+      }
+    }
+  ],
+  [
+    122,
+    "ForEveryPartPush"
+  ],
+  [
+    123,
+    {
+      "ForEveryPart": {
+        "jz_pos": 131
+      }
+    }
+  ],
+  [
+    124,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "Content-Type"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "text"
+            }
+          ],
+          "match_type": "Is",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "Type",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    125,
+    {
+      "Jz": 130
+    }
+  ],
+  [
+    126,
+    {
+      "ExtractText": {
+        "modifiers": [],
+        "first": 100,
+        "name": {
+          "Local": 0
+        }
+      }
+    }
+  ],
+  [
+    127,
+    {
+      "ForEveryPartPop": 1
+    }
+  ],
+  [
+    128,
+    {
+      "Jmp": 131
+    }
+  ],
+  [
+    129,
+    {
+      "Clear": {
+        "local_vars_idx": 0,
+        "local_vars_num": 1,
+        "match_vars": 0
+      }
+    }
+  ],
+  [
+    130,
+    {
+      "Jmp": 123
+    }
+  ],
+  [
+    131,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "subject"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "FYI:"
+            }
+          ],
+          "match_type": "Contains",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": true
+        }
+      }
+    }
+  ],
+  [
+    132,
+    {
+      "Jz": 133
+    }
+  ],
+  [
+    133,
+    {
+      "Clear": {
+        "local_vars_idx": 0,
+        "local_vars_num": 0,
+        "match_vars": 2
+      }
+    }
+  ]
+]

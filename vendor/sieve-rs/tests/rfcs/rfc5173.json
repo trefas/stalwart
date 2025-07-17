@@ -1,0 +1,175 @@
+[
+  [
+    0,
+    {
+      "Require": [
+        "Body",
+        "FileInto"
+      ]
+    }
+  ],
+  [
+    1,
+    {
+      "Test": {
+        "Body": {
+          "key_list": [
+            {
+              "Text": "MAKE MONEY FAST"
+            }
+          ],
+          "body_transform": "Raw",
+          "match_type": "Contains",
+          "comparator": "AsciiCaseMap",
+          "include_subject": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    2,
+    {
+      "Jz": 4
+    }
+  ],
+  [
+    3,
+    "Discard"
+  ],
+  [
+    4,
+    {
+      "Test": {
+        "Body": {
+          "key_list": [
+            {
+              "Text": "missile"
+            },
+            {
+              "Text": "coordinates"
+            }
+          ],
+          "body_transform": {
+            "Content": [
+              {
+                "Text": "text"
+              }
+            ]
+          },
+          "match_type": "Contains",
+          "comparator": "AsciiCaseMap",
+          "include_subject": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    5,
+    {
+      "Jz": 7
+    }
+  ],
+  [
+    6,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "secrets"
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    7,
+    {
+      "Test": {
+        "Body": {
+          "key_list": [
+            {
+              "Text": ""
+            }
+          ],
+          "body_transform": {
+            "Content": [
+              {
+                "Text": "audio/mp3"
+              }
+            ]
+          },
+          "match_type": "Contains",
+          "comparator": "AsciiCaseMap",
+          "include_subject": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    8,
+    {
+      "Jz": 10
+    }
+  ],
+  [
+    9,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "jukebox"
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    10,
+    {
+      "Test": {
+        "Body": {
+          "key_list": [
+            {
+              "Text": "project schedule"
+            }
+          ],
+          "body_transform": "Text",
+          "match_type": "Contains",
+          "comparator": "AsciiCaseMap",
+          "include_subject": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    11,
+    {
+      "Jz": 13
+    }
+  ],
+  [
+    12,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "project/schedule"
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ]
+]

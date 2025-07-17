@@ -1,0 +1,164 @@
+[
+  [
+    0,
+    {
+      "Require": [
+        "EditHeader"
+      ]
+    }
+  ],
+  [
+    1,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "X-Sieve-Filtered"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "<kim@job.example.com>"
+            },
+            {
+              "Text": "<kim@home.example.com>"
+            }
+          ],
+          "match_type": "Contains",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": true
+        }
+      }
+    }
+  ],
+  [
+    2,
+    {
+      "Jz": 5
+    }
+  ],
+  [
+    3,
+    {
+      "AddHeader": {
+        "last": false,
+        "field_name": {
+          "Text": "X-Sieve-Filtered"
+        },
+        "value": {
+          "Text": "<kim@job.example.com>"
+        }
+      }
+    }
+  ],
+  [
+    4,
+    {
+      "Redirect": {
+        "copy": false,
+        "address": {
+          "Text": "kim@home.example.com"
+        },
+        "notify": "Default",
+        "return_of_content": "Default",
+        "by_time": "None",
+        "list": false
+      }
+    }
+  ],
+  [
+    5,
+    {
+      "DeleteHeader": {
+        "index": 1,
+        "comparator": "AsciiCaseMap",
+        "match_type": "Contains",
+        "field_name": {
+          "Text": "Delivered-To"
+        },
+        "value_patterns": [
+          {
+            "Text": "bob@example.com"
+          }
+        ],
+        "mime_anychild": false
+      }
+    }
+  ],
+  [
+    6,
+    {
+      "AddHeader": {
+        "last": false,
+        "field_name": {
+          "Text": "X-Hello"
+        },
+        "value": {
+          "Text": "World"
+        }
+      }
+    }
+  ],
+  [
+    7,
+    {
+      "DeleteHeader": {
+        "index": 1,
+        "comparator": "AsciiCaseMap",
+        "match_type": "Is",
+        "field_name": {
+          "Text": "X-Hello"
+        },
+        "value_patterns": [],
+        "mime_anychild": false
+      }
+    }
+  ],
+  [
+    8,
+    {
+      "DeleteHeader": {
+        "index": 1,
+        "comparator": "AsciiCaseMap",
+        "match_type": {
+          "Matches": 0
+        },
+        "field_name": {
+          "Text": "X-Hello"
+        },
+        "value_patterns": [
+          {
+            "Text": "hello*world"
+          },
+          {
+            "Text": "hi?there"
+          }
+        ],
+        "mime_anychild": false
+      }
+    }
+  ],
+  [
+    9,
+    {
+      "DeleteHeader": {
+        "index": 1,
+        "comparator": "AsciiCaseMap",
+        "match_type": "Is",
+        "field_name": {
+          "Text": "X-By"
+        },
+        "value_patterns": [
+          {
+            "Text": "abc"
+          }
+        ],
+        "mime_anychild": false
+      }
+    }
+  ]
+]

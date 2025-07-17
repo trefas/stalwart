@@ -1,0 +1,22 @@
+require "vnd.stalwart.testsuite";
+
+require "comparator-i;ascii-numeric";
+require "relational";
+
+test "Invalid namespaces (FIXME: count only)" {
+	if test_script_compile "errors/namespace.sieve" {
+		test_fail "compile should have failed";
+	}
+}
+
+test "Invalid set command invocations (FIXME: count only)" {
+	if test_script_compile "errors/set.sieve" {
+		test_fail "compile should have failed";
+	}
+}
+
+test "Limits (FIXME: count only)" {
+	if test_script_compile "errors/limits.sieve" {
+		test_fail "compile should have failed";
+	}
+}

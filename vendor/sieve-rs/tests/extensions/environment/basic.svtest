@@ -1,0 +1,23 @@
+require "vnd.stalwart.testsuite";
+require "environment";
+require "variables";
+
+test "Name" {
+	if not environment :contains "name" "stalwart" {
+		if environment :matches "name" "*" { set "env_name" "${1}"; }
+
+		test_fail "name environment returned invalid value(1): ${env_name}";
+	}
+
+	if not environment :contains "name" "sieve" {
+		if environment :matches "name" "*" { set "env_name" "${1}"; }
+
+		test_fail "name environment returned invalid value(2): ${env_name}";
+	}
+
+	if not environment :is :comparator "i;octet" "name" "Stalwart Sieve" {
+		test_fail "name environment does not match exactly with what is expected";
+	}
+}
+
+

@@ -1,0 +1,188 @@
+[
+  [
+    0,
+    {
+      "Require": [
+        "FileInto",
+        "SpecialUse",
+        "Mailbox",
+        "Variables",
+        "Environment"
+      ]
+    }
+  ],
+  [
+    1,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "INBOX/Archive"
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": {
+          "Text": "\\Archive"
+        }
+      }
+    }
+  ],
+  [
+    2,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "Spam"
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": {
+          "Text": "\\Junk"
+        }
+      }
+    }
+  ],
+  [
+    3,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": true,
+        "folder": {
+          "Text": "Spam"
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": {
+          "Text": "\\Junk"
+        }
+      }
+    }
+  ],
+  [
+    4,
+    {
+      "Test": {
+        "Environment": {
+          "match_type": "Contains",
+          "comparator": "AsciiCaseMap",
+          "source": [
+            {
+              "Variable": {
+                "Environment": "imap.mailbox"
+              }
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "*"
+            }
+          ],
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    5,
+    {
+      "Jz": 8
+    }
+  ],
+  [
+    6,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 0
+        },
+        "value": {
+          "Text": ""
+        }
+      }
+    }
+  ],
+  [
+    7,
+    {
+      "Clear": {
+        "local_vars_idx": 0,
+        "local_vars_num": 1,
+        "match_vars": 0
+      }
+    }
+  ],
+  [
+    8,
+    {
+      "Test": {
+        "Environment": {
+          "match_type": "Is",
+          "comparator": "AsciiCaseMap",
+          "source": [
+            {
+              "Variable": {
+                "Environment": "imap.cause"
+              }
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "COPY"
+            }
+          ],
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    9,
+    {
+      "Jz": 11
+    }
+  ],
+  [
+    10,
+    {
+      "Test": {
+        "SpecialUseExists": {
+          "mailbox": {
+            "Text": ""
+          },
+          "attributes": [
+            {
+              "Text": "\\Junk"
+            }
+          ],
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    11,
+    {
+      "Jz": 13
+    }
+  ],
+  [
+    12,
+    {
+      "Redirect": {
+        "copy": false,
+        "address": {
+          "Text": "spam-report@example.org"
+        },
+        "notify": "Default",
+        "return_of_content": "Default",
+        "by_time": "None",
+        "list": false
+      }
+    }
+  ]
+]

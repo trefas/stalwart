@@ -1,0 +1,780 @@
+[
+  [
+    0,
+    {
+      "Require": [
+        "Vacation",
+        "VacationSeconds"
+      ]
+    }
+  ],
+  [
+    1,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "subject"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "cyrus"
+            }
+          ],
+          "match_type": "Contains",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    2,
+    {
+      "Jz": 7
+    }
+  ],
+  [
+    3,
+    {
+      "Test": {
+        "Vacation": {
+          "addresses": [],
+          "period": "Default",
+          "handle": null,
+          "reason": {
+            "Text": "I'm out -- send mail to cyrus-bugs"
+          }
+        }
+      }
+    }
+  ],
+  [
+    4,
+    {
+      "Jz": 6
+    }
+  ],
+  [
+    5,
+    {
+      "Vacation": {
+        "subject": null,
+        "from": null,
+        "mime": false,
+        "fcc": null,
+        "reason": {
+          "Text": "I'm out -- send mail to cyrus-bugs"
+        }
+      }
+    }
+  ],
+  [
+    6,
+    {
+      "Jmp": 10
+    }
+  ],
+  [
+    7,
+    {
+      "Test": {
+        "Vacation": {
+          "addresses": [],
+          "period": "Default",
+          "handle": null,
+          "reason": {
+            "Text": "I'm out -- call me at +1 304 555 0123"
+          }
+        }
+      }
+    }
+  ],
+  [
+    8,
+    {
+      "Jz": 10
+    }
+  ],
+  [
+    9,
+    {
+      "Vacation": {
+        "subject": null,
+        "from": null,
+        "mime": false,
+        "fcc": null,
+        "reason": {
+          "Text": "I'm out -- call me at +1 304 555 0123"
+        }
+      }
+    }
+  ],
+  [
+    10,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "subject"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "*"
+            }
+          ],
+          "match_type": {
+            "Matches": 2
+          },
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    11,
+    {
+      "Jz": 15
+    }
+  ],
+  [
+    12,
+    {
+      "Test": {
+        "Vacation": {
+          "addresses": [],
+          "period": "Default",
+          "handle": null,
+          "reason": {
+            "Text": "I'm away -- send mail to foo in my absence"
+          }
+        }
+      }
+    }
+  ],
+  [
+    13,
+    {
+      "Jz": 15
+    }
+  ],
+  [
+    14,
+    {
+      "Vacation": {
+        "subject": {
+          "List": [
+            {
+              "Text": "Automatic response to: "
+            },
+            {
+              "Variable": {
+                "Match": 1
+              }
+            }
+          ]
+        },
+        "from": null,
+        "mime": false,
+        "fcc": null,
+        "reason": {
+          "Text": "I'm away -- send mail to foo in my absence"
+        }
+      }
+    }
+  ],
+  [
+    15,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "subject"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "lunch"
+            }
+          ],
+          "match_type": "Contains",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    16,
+    {
+      "Jz": 21
+    }
+  ],
+  [
+    17,
+    {
+      "Test": {
+        "Vacation": {
+          "addresses": [],
+          "period": "Default",
+          "handle": {
+            "Text": "ran-away"
+          },
+          "reason": {
+            "Text": "I'm out and can't meet for lunch"
+          }
+        }
+      }
+    }
+  ],
+  [
+    18,
+    {
+      "Jz": 20
+    }
+  ],
+  [
+    19,
+    {
+      "Vacation": {
+        "subject": null,
+        "from": null,
+        "mime": false,
+        "fcc": null,
+        "reason": {
+          "Text": "I'm out and can't meet for lunch"
+        }
+      }
+    }
+  ],
+  [
+    20,
+    {
+      "Jmp": 24
+    }
+  ],
+  [
+    21,
+    {
+      "Test": {
+        "Vacation": {
+          "addresses": [],
+          "period": "Default",
+          "handle": {
+            "Text": "ran-away"
+          },
+          "reason": {
+            "Text": "I'm out"
+          }
+        }
+      }
+    }
+  ],
+  [
+    22,
+    {
+      "Jz": 24
+    }
+  ],
+  [
+    23,
+    {
+      "Vacation": {
+        "subject": null,
+        "from": null,
+        "mime": false,
+        "fcc": null,
+        "reason": {
+          "Text": "I'm out"
+        }
+      }
+    }
+  ],
+  [
+    24,
+    {
+      "Test": {
+        "Vacation": {
+          "addresses": [],
+          "period": "Default",
+          "handle": null,
+          "reason": {
+            "Text": "Content-Type: multipart/alternative; boundary=foo\n\n--foo\n\nI'm at the beach relaxing.  Mmmm, surf...\n\n--foo\nContent-Type: text/html; charset=us-ascii\n\n<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\"\n\"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<HTML><HEAD><TITLE>How to relax</TITLE>\n<BASE HREF=\"http://home.example.com/pictures/\"></HEAD>\n<BODY><P>I'm at the <A HREF=\"beach.gif\">beach</A> relaxing.\nMmmm, <A HREF=\"ocean.gif\">surf</A>...\n</BODY></HTML>\n\n--foo--\n"
+          }
+        }
+      }
+    }
+  ],
+  [
+    25,
+    {
+      "Jz": 27
+    }
+  ],
+  [
+    26,
+    {
+      "Vacation": {
+        "subject": null,
+        "from": null,
+        "mime": true,
+        "fcc": null,
+        "reason": {
+          "Text": "Content-Type: multipart/alternative; boundary=foo\n\n--foo\n\nI'm at the beach relaxing.  Mmmm, surf...\n\n--foo\nContent-Type: text/html; charset=us-ascii\n\n<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\"\n\"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<HTML><HEAD><TITLE>How to relax</TITLE>\n<BASE HREF=\"http://home.example.com/pictures/\"></HEAD>\n<BODY><P>I'm at the <A HREF=\"beach.gif\">beach</A> relaxing.\nMmmm, <A HREF=\"ocean.gif\">surf</A>...\n</BODY></HTML>\n\n--foo--\n"
+        }
+      }
+    }
+  ],
+  [
+    27,
+    {
+      "Test": {
+        "Vacation": {
+          "addresses": [
+            {
+              "Text": "tjs@example.edu"
+            },
+            {
+              "Text": "ts4z@landru.example.edu"
+            }
+          ],
+          "period": {
+            "Days": 23
+          },
+          "handle": null,
+          "reason": {
+            "Text": "I'm away until October 19.\nIf it's an emergency, call 911, I guess."
+          }
+        }
+      }
+    }
+  ],
+  [
+    28,
+    {
+      "Jz": 30
+    }
+  ],
+  [
+    29,
+    {
+      "Vacation": {
+        "subject": null,
+        "from": null,
+        "mime": false,
+        "fcc": null,
+        "reason": {
+          "Text": "I'm away until October 19.\nIf it's an emergency, call 911, I guess."
+        }
+      }
+    }
+  ],
+  [
+    30,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "from"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "boss@example.edu"
+            }
+          ],
+          "match_type": "Contains",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    31,
+    {
+      "Jz": 34
+    }
+  ],
+  [
+    32,
+    {
+      "Redirect": {
+        "copy": false,
+        "address": {
+          "Text": "pleeb@isp.example.org"
+        },
+        "notify": "Default",
+        "return_of_content": "Default",
+        "by_time": "None",
+        "list": false
+      }
+    }
+  ],
+  [
+    33,
+    {
+      "Jmp": 37
+    }
+  ],
+  [
+    34,
+    {
+      "Test": {
+        "Vacation": {
+          "addresses": [],
+          "period": "Default",
+          "handle": null,
+          "reason": {
+            "Text": "Sorry, I'm away, I'll read your\nmessage when I get around to it."
+          }
+        }
+      }
+    }
+  ],
+  [
+    35,
+    {
+      "Jz": 37
+    }
+  ],
+  [
+    36,
+    {
+      "Vacation": {
+        "subject": null,
+        "from": null,
+        "mime": false,
+        "fcc": null,
+        "reason": {
+          "Text": "Sorry, I'm away, I'll read your\nmessage when I get around to it."
+        }
+      }
+    }
+  ],
+  [
+    37,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "accept-language"
+            },
+            {
+              "Text": "content-language"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "en"
+            }
+          ],
+          "match_type": "Contains",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    38,
+    {
+      "Jz": 43
+    }
+  ],
+  [
+    39,
+    {
+      "Test": {
+        "Vacation": {
+          "addresses": [],
+          "period": "Default",
+          "handle": null,
+          "reason": {
+            "Text": "I am away this week."
+          }
+        }
+      }
+    }
+  ],
+  [
+    40,
+    {
+      "Jz": 42
+    }
+  ],
+  [
+    41,
+    {
+      "Vacation": {
+        "subject": null,
+        "from": null,
+        "mime": false,
+        "fcc": null,
+        "reason": {
+          "Text": "I am away this week."
+        }
+      }
+    }
+  ],
+  [
+    42,
+    {
+      "Jmp": 46
+    }
+  ],
+  [
+    43,
+    {
+      "Test": {
+        "Vacation": {
+          "addresses": [],
+          "period": "Default",
+          "handle": null,
+          "reason": {
+            "Text": "Estoy ausente esta semana."
+          }
+        }
+      }
+    }
+  ],
+  [
+    44,
+    {
+      "Jz": 46
+    }
+  ],
+  [
+    45,
+    {
+      "Vacation": {
+        "subject": null,
+        "from": null,
+        "mime": false,
+        "fcc": null,
+        "reason": {
+          "Text": "Estoy ausente esta semana."
+        }
+      }
+    }
+  ],
+  [
+    46,
+    {
+      "Test": {
+        "Address": {
+          "header_list": [
+            {
+              "Text": "from"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "*@ourdivision.example.com"
+            }
+          ],
+          "address_part": "All",
+          "match_type": {
+            "Matches": 0
+          },
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    47,
+    {
+      "Jz": 52
+    }
+  ],
+  [
+    48,
+    {
+      "Test": {
+        "Vacation": {
+          "addresses": [],
+          "period": "Default",
+          "handle": null,
+          "reason": {
+            "Text": "Having lots of fun! Back in a day or two!"
+          }
+        }
+      }
+    }
+  ],
+  [
+    49,
+    {
+      "Jz": 51
+    }
+  ],
+  [
+    50,
+    {
+      "Vacation": {
+        "subject": {
+          "Text": "Gone fishing"
+        },
+        "from": null,
+        "mime": false,
+        "fcc": null,
+        "reason": {
+          "Text": "Having lots of fun! Back in a day or two!"
+        }
+      }
+    }
+  ],
+  [
+    51,
+    {
+      "Jmp": 55
+    }
+  ],
+  [
+    52,
+    {
+      "Test": {
+        "Vacation": {
+          "addresses": [],
+          "period": "Default",
+          "handle": null,
+          "reason": {
+            "Text": "Je lirai votre message quand je retourne."
+          }
+        }
+      }
+    }
+  ],
+  [
+    53,
+    {
+      "Jz": 55
+    }
+  ],
+  [
+    54,
+    {
+      "Vacation": {
+        "subject": {
+          "Text": "Je suis parti cette semaine"
+        },
+        "from": null,
+        "mime": false,
+        "fcc": null,
+        "reason": {
+          "Text": "Je lirai votre message quand je retourne."
+        }
+      }
+    }
+  ],
+  [
+    55,
+    {
+      "Test": {
+        "Vacation": {
+          "addresses": [
+            {
+              "Text": "tjs@example.edu"
+            },
+            {
+              "Text": "ts4z@landru.example.edu"
+            }
+          ],
+          "period": {
+            "Seconds": 1800
+          },
+          "handle": null,
+          "reason": {
+            "Text": "I am in a meeting, and do not have access to email."
+          }
+        }
+      }
+    }
+  ],
+  [
+    56,
+    {
+      "Jz": 58
+    }
+  ],
+  [
+    57,
+    {
+      "Vacation": {
+        "subject": null,
+        "from": null,
+        "mime": false,
+        "fcc": null,
+        "reason": {
+          "Text": "I am in a meeting, and do not have access to email."
+        }
+      }
+    }
+  ],
+  [
+    58,
+    {
+      "Test": {
+        "Vacation": {
+          "addresses": [],
+          "period": {
+            "Seconds": 0
+          },
+          "handle": {
+            "Text": "auto-resp"
+          },
+          "reason": {
+            "Text": "Your request has been received.  A service\n    representative will contact you as soon as\n    possible, usually within one business day."
+          }
+        }
+      }
+    }
+  ],
+  [
+    59,
+    {
+      "Jz": 61
+    }
+  ],
+  [
+    60,
+    {
+      "Vacation": {
+        "subject": null,
+        "from": null,
+        "mime": false,
+        "fcc": null,
+        "reason": {
+          "Text": "Your request has been received.  A service\n    representative will contact you as soon as\n    possible, usually within one business day."
+        }
+      }
+    }
+  ]
+]

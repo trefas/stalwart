@@ -1,0 +1,636 @@
+[
+  [
+    0,
+    {
+      "Require": [
+        "Date",
+        "Relational",
+        "FileInto",
+        "Index",
+        "Vacation",
+        "Variables",
+        "EditHeader"
+      ]
+    }
+  ],
+  [
+    1,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "from"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "boss@example.com"
+            }
+          ],
+          "match_type": "Is",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    2,
+    {
+      "Jz": 6
+    }
+  ],
+  [
+    3,
+    {
+      "Test": {
+        "Date": {
+          "header_name": {
+            "Text": "date"
+          },
+          "key_list": [
+            {
+              "Text": "09"
+            }
+          ],
+          "match_type": {
+            "Value": "Ge"
+          },
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "zone": "Original",
+          "date_part": "Hour",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    4,
+    {
+      "Jz": 6
+    }
+  ],
+  [
+    5,
+    {
+      "Test": {
+        "Date": {
+          "header_name": {
+            "Text": "date"
+          },
+          "key_list": [
+            {
+              "Number": {
+                "Integer": 17
+              }
+            }
+          ],
+          "match_type": {
+            "Value": "Lt"
+          },
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "zone": "Original",
+          "date_part": "Hour",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    6,
+    {
+      "Jz": 8
+    }
+  ],
+  [
+    7,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "urgent"
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    8,
+    {
+      "Test": {
+        "Date": {
+          "header_name": {
+            "Text": "received"
+          },
+          "key_list": [
+            {
+              "Number": {
+                "Integer": 0
+              }
+            }
+          ],
+          "match_type": "Is",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "zone": "Local",
+          "date_part": "Weekday",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    9,
+    {
+      "Jnz": 11
+    }
+  ],
+  [
+    10,
+    {
+      "Test": {
+        "Date": {
+          "header_name": {
+            "Text": "received"
+          },
+          "key_list": [
+            {
+              "Number": {
+                "Integer": 6
+              }
+            }
+          ],
+          "match_type": "Is",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "zone": "Local",
+          "date_part": "Weekday",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    11,
+    {
+      "Jz": 13
+    }
+  ],
+  [
+    12,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "weekend"
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    13,
+    {
+      "Test": {
+        "CurrentDate": {
+          "zone": null,
+          "match_type": "Is",
+          "comparator": "AsciiCaseMap",
+          "date_part": "Weekday",
+          "key_list": [
+            {
+              "Number": {
+                "Integer": 0
+              }
+            }
+          ],
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    14,
+    {
+      "Jnz": 20
+    }
+  ],
+  [
+    15,
+    {
+      "Test": {
+        "CurrentDate": {
+          "zone": null,
+          "match_type": "Is",
+          "comparator": "AsciiCaseMap",
+          "date_part": "Weekday",
+          "key_list": [
+            {
+              "Number": {
+                "Integer": 6
+              }
+            }
+          ],
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    16,
+    {
+      "Jnz": 20
+    }
+  ],
+  [
+    17,
+    {
+      "Test": {
+        "CurrentDate": {
+          "zone": null,
+          "match_type": {
+            "Value": "Lt"
+          },
+          "comparator": "AsciiCaseMap",
+          "date_part": "Hour",
+          "key_list": [
+            {
+              "Text": "09"
+            }
+          ],
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    18,
+    {
+      "Jnz": 20
+    }
+  ],
+  [
+    19,
+    {
+      "Test": {
+        "CurrentDate": {
+          "zone": null,
+          "match_type": {
+            "Value": "Ge"
+          },
+          "comparator": "AsciiCaseMap",
+          "date_part": "Hour",
+          "key_list": [
+            {
+              "Number": {
+                "Integer": 17
+              }
+            }
+          ],
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    20,
+    {
+      "Jz": 22
+    }
+  ],
+  [
+    21,
+    {
+      "Redirect": {
+        "copy": false,
+        "address": {
+          "Text": "pager@example.com"
+        },
+        "notify": "Default",
+        "return_of_content": "Default",
+        "by_time": "None",
+        "list": false
+      }
+    }
+  ],
+  [
+    22,
+    {
+      "Test": {
+        "CurrentDate": {
+          "zone": null,
+          "match_type": {
+            "Value": "Ge"
+          },
+          "comparator": "AsciiCaseMap",
+          "date_part": "Date",
+          "key_list": [
+            {
+              "Text": "2007-06-30"
+            }
+          ],
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    23,
+    {
+      "Jz": 25
+    }
+  ],
+  [
+    24,
+    {
+      "Test": {
+        "CurrentDate": {
+          "zone": null,
+          "match_type": {
+            "Value": "Le"
+          },
+          "comparator": "AsciiCaseMap",
+          "date_part": "Date",
+          "key_list": [
+            {
+              "Text": "2007-07-07"
+            }
+          ],
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    25,
+    {
+      "Jz": 29
+    }
+  ],
+  [
+    26,
+    {
+      "Test": {
+        "Vacation": {
+          "addresses": [],
+          "period": {
+            "Days": 7
+          },
+          "handle": null,
+          "reason": {
+            "Text": "I'm away during the first week in July."
+          }
+        }
+      }
+    }
+  ],
+  [
+    27,
+    {
+      "Jz": 29
+    }
+  ],
+  [
+    28,
+    {
+      "Vacation": {
+        "subject": null,
+        "from": null,
+        "mime": false,
+        "fcc": null,
+        "reason": {
+          "Text": "I'm away during the first week in July."
+        }
+      }
+    }
+  ],
+  [
+    29,
+    {
+      "Test": {
+        "CurrentDate": {
+          "zone": null,
+          "match_type": {
+            "Matches": 3
+          },
+          "comparator": "AsciiCaseMap",
+          "date_part": "Month",
+          "key_list": [
+            {
+              "Text": "*"
+            }
+          ],
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    30,
+    {
+      "Jz": 33
+    }
+  ],
+  [
+    31,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 0
+        },
+        "value": {
+          "Variable": {
+            "Match": 1
+          }
+        }
+      }
+    }
+  ],
+  [
+    32,
+    {
+      "Clear": {
+        "local_vars_idx": 0,
+        "local_vars_num": 1,
+        "match_vars": 0
+      }
+    }
+  ],
+  [
+    33,
+    {
+      "Test": {
+        "CurrentDate": {
+          "zone": null,
+          "match_type": {
+            "Matches": 3
+          },
+          "comparator": "AsciiCaseMap",
+          "date_part": "Year",
+          "key_list": [
+            {
+              "Text": "*"
+            }
+          ],
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    34,
+    {
+      "Jz": 37
+    }
+  ],
+  [
+    35,
+    {
+      "Set": {
+        "modifiers": [],
+        "name": {
+          "Local": 0
+        },
+        "value": {
+          "Variable": {
+            "Match": 1
+          }
+        }
+      }
+    }
+  ],
+  [
+    36,
+    {
+      "Clear": {
+        "local_vars_idx": 0,
+        "local_vars_num": 1,
+        "match_vars": 0
+      }
+    }
+  ],
+  [
+    37,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "-"
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ],
+  [
+    38,
+    {
+      "Test": {
+        "CurrentDate": {
+          "zone": null,
+          "match_type": {
+            "Matches": 1
+          },
+          "comparator": "AsciiCaseMap",
+          "date_part": "Std11",
+          "key_list": [
+            {
+              "Text": "*"
+            }
+          ],
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    39,
+    {
+      "Jz": 41
+    }
+  ],
+  [
+    40,
+    {
+      "AddHeader": {
+        "last": false,
+        "field_name": {
+          "Text": "Processing-date"
+        },
+        "value": {
+          "Variable": {
+            "Match": 0
+          }
+        }
+      }
+    }
+  ],
+  [
+    41,
+    {
+      "Test": {
+        "Date": {
+          "header_name": {
+            "Text": "received"
+          },
+          "key_list": [
+            {
+              "Text": "2007-02-26T09:00:00-05:00"
+            }
+          ],
+          "match_type": {
+            "Value": "Gt"
+          },
+          "comparator": "AsciiCaseMap",
+          "index": 2,
+          "zone": {
+            "Time": -18000
+          },
+          "date_part": "Iso8601",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    42,
+    {
+      "Jz": 44
+    }
+  ],
+  [
+    43,
+    {
+      "Redirect": {
+        "copy": false,
+        "address": {
+          "Text": "aftercutoff@example.org"
+        },
+        "notify": "Default",
+        "return_of_content": "Default",
+        "by_time": "None",
+        "list": false
+      }
+    }
+  ]
+]

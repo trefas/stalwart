@@ -1,0 +1,37 @@
+require "vnd.stalwart.testsuite";
+
+require "regex";
+require "variables";
+
+# Test overwriting only on match
+test "RFC - values overwrite" {
+	set "sentence1" "the cat jumps off the table";
+	set "sentence2" "the dog barks at the cat in the alley";
+
+	if not string :regex "${sentence1}" "the (.*) jumps off the (.*)" {
+		test_fail "failed to match first sentence";
+	}
+
+	if not string :is "${1}:${2}" "cat:table" {
+		test_fail "invalid match values";
+	}
+
+	set "regex" "the (.*) barks at the (.*) in the store";
+	if string :regex "${sentence2}" "${regex}" {
+		test_fail "should not have matched second sentence";
+	}
+
+	if not string :is "${1}:${2}" "cat:table" {
+		test_fail "should have preserved match values";
+	}
+
+	set "regex" "the (.*) barks at the (.*) in the alley";
+	if not string :regex "${sentence2}" "${regex}" {
+		test_fail "failed to match the second sentence (second time)";
+	}
+
+	if not string :is "${1}:${2}" "dog:cat" {
+		test_fail "should have overwritten match values";
+	}
+}
+

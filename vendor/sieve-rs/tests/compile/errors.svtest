@@ -1,0 +1,225 @@
+require "vnd.stalwart.testsuite";
+
+require "relational";
+require "comparator-i;ascii-numeric";
+
+/*
+ * Errors triggered in the compiled scripts are pretty reduntant over the
+ * tested commands, but we want to be thorough.
+ */
+
+/*
+ * Lexer errors
+ */
+
+test "Lexer errors (FIXME: count only)" {
+	if test_script_compile "errors/lexer.sieve" {
+		test_fail "compile should have failed.";
+	}
+
+
+}
+
+/*
+ * Parser errors
+ */
+
+test "Parser errors (FIXME: count only)" {
+	if test_script_compile "errors/parser.sieve" {
+		test_fail "compile should have failed.";
+	}
+
+}
+
+/*
+ * Header test
+ */
+
+test "Header errors" {
+	if test_script_compile "errors/header.sieve" {
+		test_fail "compile should have failed.";
+	}
+
+}
+
+/*
+ * Address test
+ */
+
+
+test "Address errors" {
+	if test_script_compile "errors/address.sieve" {
+		test_fail "compile should have failed.";
+	}
+
+
+}
+
+/*
+ * If command
+ */
+
+test "If errors (FIXME: count only)" {
+	if test_script_compile "errors/if.sieve" {
+		test_fail "compile should have failed.";
+	}
+
+}
+
+/*
+ * Require command
+ */
+
+test "Require errors (FIXME: count only)" {
+	if test_script_compile "errors/require.sieve" {
+		test_fail "compile should have failed.";
+	}
+
+
+}
+
+/*
+ * Size test
+ */
+
+test "Size errors (FIXME: count only)" {
+	if test_script_compile "errors/size.sieve" {
+		test_fail "compile should have failed.";
+	}
+
+}
+
+/*
+ * Envelope test
+ */
+
+test "Envelope errors (FIXME: count only)" {
+	if test_script_compile "errors/envelope.sieve" {
+		test_fail "compile should have failed.";
+	}
+
+}
+
+/*
+ * Stop command
+ */
+
+test "Stop errors (FIXME: count only)" {
+	if test_script_compile "errors/stop.sieve" {
+		test_fail "compile should have failed.";
+	}
+
+}
+
+/*
+ * Keep command
+ */
+
+test "Keep errors (FIXME: count only)" {
+	if test_script_compile "errors/keep.sieve" {
+		test_fail "compile should have failed.";
+	}
+
+}
+
+/*
+ * Fileinto command
+ */
+
+test "Fileinto errors (FIXME: count only)" {
+	if test_script_compile "errors/fileinto.sieve" {
+		test_fail "compile should have failed.";
+	}
+
+}
+
+/*
+ * COMPARATOR errors
+ */
+
+test "COMPARATOR errors (FIXME: count only)" {
+	if test_script_compile "errors/comparator.sieve" {
+		test_fail "compile should have failed.";
+	}
+
+}
+
+/*
+ * ADDRESS-PART errors
+ */
+
+test "ADDRESS-PART errors (FIXME: count only)" {
+	if test_script_compile "errors/address-part.sieve" {
+		test_fail "compile should have failed.";
+	}
+
+}
+
+/*
+ * MATCH-TYPE errors
+ */
+
+test "MATCH-TYPE errors (FIXME: count only)" {
+	if test_script_compile "errors/match-type.sieve" {
+		test_fail "compile should have failed.";
+	}
+
+}
+
+/*
+ * Encoded-character errors
+ */
+
+test "Encoded-character errors (FIXME: count only)" {
+	if test_script_compile "errors/encoded-character.sieve" {
+		test_fail "compile should have failed.";
+	}
+
+}
+
+/*
+ * Outgoing address errors
+ */
+
+/*test "Outgoing address errors (FIXME: count only)" {
+	if test_script_compile "errors/out-address.sieve" {
+		test_fail "compile should have failed.";
+	}
+
+}*/
+
+/*
+ * Tagged argument errors
+ */
+
+test "Tagged argument errors (FIXME: count only)" {
+	if test_script_compile "errors/tag.sieve" {
+		test_fail "compile should have failed.";
+	}
+
+}
+
+/*
+ * Typos
+ */
+
+test "Typos" {
+	if test_script_compile "errors/typos.sieve" {
+		test_fail "compile should have failed.";
+	}
+
+	
+}
+
+
+/*
+ * Unsupported language features
+ */
+
+test "Unsupported language features (FIXME: count only)" {
+	if test_script_compile "errors/unsupported.sieve" {
+		test_fail "compile should have failed.";
+	}
+
+	
+}

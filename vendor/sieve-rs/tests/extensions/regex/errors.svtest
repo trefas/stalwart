@@ -1,0 +1,18 @@
+require "vnd.stalwart.testsuite";
+
+require "relational";
+require "comparator-i;ascii-numeric";
+
+test "Compile errors" {
+	if test_script_compile "errors/compile.sieve" {
+		test_fail "compile should have failed";
+	}
+}
+
+test "Runtime errors" {
+	if not test_script_compile "errors/runtime.sieve" {
+		test_fail "failed to compile";
+	}
+
+}
+

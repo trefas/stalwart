@@ -1,0 +1,24 @@
+require "vnd.stalwart.testsuite";
+
+require "relational";
+require "comparator-i;ascii-numeric";
+
+/*
+ * Invalid syntax
+ */
+
+test "Invalid Syntax" {
+        if test_script_compile "errors/syntax.sieve" {
+                test_fail "compile should have failed";
+        }
+}
+
+/*
+ * Specialuse_exists - bad UTF-8 in mailbox name
+ */
+
+test "Specialuse_exists - bad UTF-8 in mailbox name" {
+	if not test_script_compile "errors/specialuse_exists-bad-utf8.sieve" {
+		test_fail "compile failed";
+	}
+}

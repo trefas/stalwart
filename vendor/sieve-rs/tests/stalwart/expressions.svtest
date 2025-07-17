@@ -1,0 +1,160 @@
+require ["variables", "relational", "vnd.stalwart.expressions"];
+
+test "Expressions" {
+    set "A" "1";
+    set "B" "2";
+    set "C" "-3";
+    set "D" "-4.2";
+    set "E" "5.7";
+
+    set "global.a" "1";
+    set "global.b" "2";
+    set "global.c" "3";
+
+    let "result" "2 + 2";
+    if not string :is "The result of 2 + 2 is ${result}!" "The result of 2 + 2 is 4!"
+    {
+        test_fail "${result} is not 4";
+    }
+
+    if not eval "2 * 3 > 5"
+    {
+        test_fail "{2 * 3} is not greater than 5";
+    }
+
+    if not eval "9 / 2 < 101.6"
+    {
+        test_fail "{9 / 2} is not lower than 101.6";
+    }
+
+    if not eval "(8 * 4 + 20 - 10) / 2 == 20 + 6 * 3 - 4 * 2 - 9"
+    {
+        let "a" "(8 * 4 + 20 - 10) / 2";
+        let "b" "20 + 6 * 3 - 4 * 2 - 9";
+        test_fail "(8 * 4 + 20 - 10) / 2 [${a}] is not equal to 20 + 6 * 3 - 4 * 2 - 9 [${b}]";
+    }
+
+    if not eval "(A + B) / (C + D) * E == -2.375"
+    {
+        let "result" "(A + B) / (C + D) * E";
+        test_fail "(A + B) / (C + D) * E (${result}) is not equal to -2.375";
+    }
+
+    if not eval "global.a < global.b && global.c > global.a == 1"
+    {
+        test_fail "global.a < global.b && global.c > global.a ({global.a < global.b && global.c > global.a}) is not equal to 1";
+    }
+
+    if not eval "global.a > global.b || global.c < global.a == 0"
+    {
+        test_fail "global.a > global.b || global.c < global.a ({global.a > global.b || global.c < global.a}) is not equal to 0";
+    }
+
+    if not eval "global.a > global.b || !(global.c < global.a) == 1"
+    {
+        test_fail "global.a > global.b || !(global.c < global.a) ({global.a > global.b || !(global.c < global.a)}) is not equal to 1";
+    }
+
+    if not eval "global.a < global.b && global.c > global.a"
+    {
+        test_fail "global.a < global.b && global.c > global.a ({global.a < global.b && global.c > global.a}) is not equal to 1";
+    }
+
+    if not eval "1" {
+        test_fail "1 is not true";
+    }
+
+    if eval "0" {
+        test_fail "0 is not false";
+    }
+
+    # Scopes
+    
+    if true {
+        set :local "is_set" "1";
+    }
+    
+    if false {
+        set :local "is_unset" "1";
+    }
+    
+    if not eval "is_set" {
+        test_fail "variable with local scope unavailable in expression";
+    }
+    
+    if eval "is_unset" {
+        test_fail "unset variable is true in expression";
+    }
+    
+    if not eval "is_set || is_unset" {
+        test_fail "set || unset is false in expression";
+    }
+
+    if eval "is_set && is_unset" {
+        test_fail "set && unset is true in expression";
+    }
+
+    if not eval "is_set + is_unset == 1" {
+        test_fail "set + unset != 1 in expression";
+    }
+
+    let "result" "is_set + is_set + is_unset + is_unset";
+
+    if not string :is "${result}" "2" {
+        test_fail "set + set + unset + unset => '${result}' != 2 in expression";
+    }
+
+	if not eval "!global.DOES_NOT_EXIST != global.DOES_NOT_EXIST" {
+		test_fail "global.DOES_NOT_EXIST = '${global.DOES_NOT_EXIST}'";
+	}
+
+    if not eval "true != false" {
+        test_fail "true != false";
+    }
+
+}
+
+test "Expressions - Arrays" {
+    let "expr" "['a', 'b', 'c']";
+    let "expr2" "expr + ['d', 'e', 'f']";
+
+    if not eval "in_array(expr, 'c')" {
+        test_fail "in_array(expr, 'd') is false";
+    }
+
+    if eval "in_array(expr, 'w')" {
+        test_fail "in_array(expr, 'w') is true";
+    }
+
+    if not eval "in_array(['x', 'y', 'z'], 'y')" {
+        test_fail "in_array(['x', 'y', 'z'], 'y') is false";
+    }
+
+    if eval "in_array(['x', 'y', 'z'], 'p')" {
+        test_fail "in_array(['x', 'y', 'z'], 'p') is true";
+    }
+
+    if eval "expr[0] != 'a'" {
+        test_fail "expr[0] != 'a'";
+    }
+
+    set "index" "1";
+
+    if eval "expr[index] != 'b'" {
+        test_fail "expr[index] != 'b'";
+    }
+
+    if eval "expr[index + 1] != 'c'" {
+        test_fail "expr[index + 1] != 'c'";
+    }
+
+    if eval "expr2[count(expr2) - 1] != 'f'" {
+        test_fail "expr2[count(expr2) - 1] != 'f'";
+    }
+
+    eval "2 + 2";
+
+    if eval "[2 + 2, 'a' + 'b', 5 / 2, ext_zero()] != [4, 'ab', 2.5, 'my_value']" {
+        test_fail "[2 + 2, 'a' + 'b', 5 / 2] != [4, 'ab', 2.5]";
+    }
+}

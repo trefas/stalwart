@@ -1,0 +1,124 @@
+[
+  [
+    0,
+    {
+      "Require": [
+        "Reject",
+        "Ereject"
+      ]
+    }
+  ],
+  [
+    1,
+    {
+      "Test": {
+        "Address": {
+          "header_list": [
+            {
+              "Text": "from"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "someone@example.com"
+            }
+          ],
+          "address_part": "All",
+          "match_type": "Is",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    2,
+    {
+      "Jz": 4
+    }
+  ],
+  [
+    3,
+    {
+      "Reject": {
+        "ereject": true,
+        "reason": {
+          "Text": "I no longer accept mail from this address"
+        }
+      }
+    }
+  ],
+  [
+    4,
+    {
+      "Test": {
+        "Size": {
+          "over": true,
+          "limit": 102400,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    5,
+    {
+      "Jz": 7
+    }
+  ],
+  [
+    6,
+    {
+      "Reject": {
+        "ereject": false,
+        "reason": {
+          "Text": "Your message is too big.  If you want to send me a big attachment,\nput it on a public web site and send me a URL.\n"
+        }
+      }
+    }
+  ],
+  [
+    7,
+    {
+      "Test": {
+        "Header": {
+          "header_list": [
+            {
+              "Text": "from"
+            }
+          ],
+          "key_list": [
+            {
+              "Text": "coyote@desert.example.org"
+            }
+          ],
+          "match_type": "Contains",
+          "comparator": "AsciiCaseMap",
+          "index": null,
+          "mime_opts": "None",
+          "mime_anychild": false,
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    8,
+    {
+      "Jz": 10
+    }
+  ],
+  [
+    9,
+    {
+      "Reject": {
+        "ereject": false,
+        "reason": {
+          "Text": "I am not taking mail from you, and I don't\nwant your birdseed, either!\n"
+        }
+      }
+    }
+  ]
+]

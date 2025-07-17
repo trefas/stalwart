@@ -1,0 +1,26 @@
+require "vnd.stalwart.testsuite";
+
+# A bit awkward to test the extension with itself
+require "relational";
+require "comparator-i;ascii-numeric";
+
+/*
+ * Syntax errors
+ */
+
+test "Syntax errors" {
+	if test_script_compile "errors/syntax.sieve" {
+		test_fail "compile should have failed";
+	}
+}
+
+/*
+ * Validation errors
+ */
+
+test "Validation errors" {
+	if test_script_compile "errors/validation.sieve" {
+		test_fail "compile should have failed";
+	}
+
+}

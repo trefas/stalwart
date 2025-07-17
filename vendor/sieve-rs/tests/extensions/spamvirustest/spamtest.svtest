@@ -1,0 +1,109 @@
+require "vnd.stalwart.testsuite";
+require "spamtest";
+require "relational";
+require "comparator-i;ascii-numeric";
+require "variables";
+
+/*
+ * Value
+ */
+
+test_set "message" text:
+From: legitimate@example.com
+To: victim@dovecot.example.net
+Subject: Not spammish
+
+Test!
+.
+;
+
+test_config_set "sieve_spam_status" "1";
+
+test "Value: subzero" {
+	if spamtest :is "0" {
+		test_fail "spamtest not configured or test failed";
+	}
+
+	if not spamtest :is "1" {
+		if spamtest :matches "*" { }
+		test_fail "wrong spam value produced: ${1}";
+	}
+
+	if spamtest :is "2" {
+		test_fail "spam test matches anything";
+	}
+}
+
+test_config_set "sieve_spam_status" "1";
+
+test "Value: zero" {
+	if spamtest :is "0" {
+		test_fail "spamtest not configured or test failed";
+	}
+
+	if not spamtest :is "1" {
+		if spamtest :matches "*" { }
+		test_fail "wrong spam value produced: ${1}";
+	}
+
+	if spamtest :is "2" {
+		test_fail "spam test matches anything";
+	}
+}
+
+test_config_set "sieve_spam_status" "2";
+
+test "Value: low" {
+	if spamtest :is "0" {
+		test_fail "spamtest not configured or test failed";
+	}
+
+	if not spamtest :value "gt" "1" {
+		test_fail "too small spam value produced";
+	}
+
+	if not spamtest :value "eq" "2" {
+		if spamtest :matches "*" { }
+		test_fail "wrong spam value produced: ${1}";
+	}
+}
+
+test_config_set "sieve_spam_status" "8";
+
+test "Value: high" {
+	if spamtest :is "0" {
+		test_fail "spamtest not configured or test failed";
+	}
+
+	if not spamtest :value "eq" "8" {
+		if spamtest :matches "*" { }
+		test_fail "wrong spam value produced: ${1}";
+	}
+}
+
+test_config_set "sieve_spam_status" "10";
+
+test "Value: max" {
+	if spamtest :is "0" {
+		test_fail "spamtest not configured or test failed";
+	}
+
+	if not spamtest :value "eq" "10" {
+		if spamtest :matches "*" { }
+		test_fail "wrong spam value produced: ${1}";
+	}
+}
+
+test_config_set "sieve_spam_status" "10";
+
+test "Value: past-max" {
+	if spamtest :is "0" {
+		test_fail "spamtest not configured or test failed";
+	}
+
+	if not spamtest :value "eq" "10" {
+		if spamtest :matches "*" { }
+		test_fail "wrong spam value produced: ${1}";
+	}
+}
+

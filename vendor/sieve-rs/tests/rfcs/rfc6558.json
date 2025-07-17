@@ -1,0 +1,78 @@
+[
+  [
+    0,
+    {
+      "Require": [
+        "Convert",
+        "FileInto"
+      ]
+    }
+  ],
+  [
+    1,
+    {
+      "Convert": {
+        "from_media_type": {
+          "Text": "image/tiff"
+        },
+        "to_media_type": {
+          "Text": "image/jpeg"
+        },
+        "transcoding_params": [
+          {
+            "Text": "pix-x=320"
+          },
+          {
+            "Text": "pix-y=240"
+          }
+        ],
+        "is_not": false
+      }
+    }
+  ],
+  [
+    2,
+    {
+      "Test": {
+        "Convert": {
+          "from_media_type": {
+            "Text": "image/tiff"
+          },
+          "to_media_type": {
+            "Text": "image/jpeg"
+          },
+          "transcoding_params": [
+            {
+              "Text": "pix-x=320"
+            },
+            {
+              "Text": "pix-y=240"
+            }
+          ],
+          "is_not": false
+        }
+      }
+    }
+  ],
+  [
+    3,
+    {
+      "Jz": 5
+    }
+  ],
+  [
+    4,
+    {
+      "FileInto": {
+        "copy": false,
+        "create": false,
+        "folder": {
+          "Text": "INBOX.pics"
+        },
+        "flags": [],
+        "mailbox_id": null,
+        "special_use": null
+      }
+    }
+  ]
+]

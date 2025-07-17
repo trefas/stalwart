@@ -1,0 +1,35 @@
+require "vnd.stalwart.testsuite";
+
+require "relational";
+require "comparator-i;ascii-numeric";
+
+/*
+ * Invalid syntax
+ */
+
+test "Invalid Syntax" {
+        if test_script_compile "errors/syntax.sieve" {
+                test_fail "compile should have failed";
+        }
+}
+
+/*
+ * Metadataexists - bad UTF-8 in mailbox name
+ */
+
+test "Metadataexists - bad UTF-8 in mailbox name" {
+	if not test_script_compile "errors/metadataexists-bad-utf8.sieve" {
+		test_fail "compile failed";
+	}
+
+}
+
+/*
+ * Metadata - bad UTF-8 in mailbox name
+ */
+
+test "Metadata - bad UTF-8 in mailbox name" {
+	if not test_script_compile "errors/metadata-bad-utf8.sieve" {
+		test_fail "compile failed";
+	}
+}
