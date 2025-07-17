@@ -38,24 +38,23 @@ cargo build --release -p stalwart-cli
 
 %install
 # Создание директорий
-install -d %{buildroot}/opt/stalwart/bin
-install -d %{buildroot}/opt/stalwart/etc
-install -d %{buildroot}/opt/stalwart/logs
-install -d %{buildroot}/opt/stalwart/data
+install -d %{buildroot}/etc/stalwart
+install -d %{buildroot}/var/log/stalwart
+install -d %{buildroot}/var/lib/stalwart
 
 # Бинарники
-install -m 755 target/release/stalwart %{buildroot}/opt/stalwart/bin/stalwart
-install -m 755 target/release/stalwart-cli %{buildroot}/opt/stalwart/bin/stalwart-cli
+install -m 755 target/release/stalwart %{buildroot}/usr/bin/stalwart
+install -m 755 target/release/stalwart-cli %{buildroot}/usr/bin/stalwart-cli
 
 # Пример конфигурации
-install -m 700 resources/config/config.toml %{buildroot}/opt/stalwart/etc/config.toml
+install -m 700 resources/config/config.toml %{buildroot}/etc/stalwart/config.toml
 
 # systemd unit
 install -D -m 644 resources/systemd/stalwart-mail.service %{buildroot}/lib/systemd/system/stalwart-mail.service
 
 %pre
 getent group stalwart >/dev/null || groupadd -r stalwart
-getent passwd stalwart >/dev/null || useradd -r -g stalwart -d /opt/stalwart -s /sbin/nologin -c "Stalwart mail server" stalwart
+getent passwd stalwart >/dev/null || useradd -r -g stalwart -s /sbin/nologin -c "Stalwart mail server" stalwart
 
 %post
 %systemd_post stalwart-mail.service
@@ -67,16 +66,15 @@ getent passwd stalwart >/dev/null || useradd -r -g stalwart -d /opt/stalwart -s 
 %systemd_postun_with_restart stalwart-mail.service
 
 %files
-%defattr(-,stalwart,stalwart,-)
-/opt/stalwart/bin/stalwart
-/opt/stalwart/bin/stalwart-cli
-/opt/stalwart/etc/config.toml
-%dir /opt/stalwart
-%dir /opt/stalwart/bin
-%dir /opt/stalwart/etc
-%dir /opt/stalwart/logs
-%dir /opt/stalwart/data
+/usr/bin/stalwart
+/usr/bin/stalwart-cli
+/etc/stalwart/config.toml
 /lib/systemd/system/stalwart-mail.service
+%dir /usr
+%dir /usr/bin
+%dir /etc/stalwart
+%dir /var/log/stalwart
+%dir /var/lib/stalwart
 
 %changelog
 * Thu Jul 17 2025 Andrey Semenow <trefas@altlinux.org> %version-%release
