@@ -43,14 +43,14 @@ install -d %{buildroot}/var/log/stalwart
 install -d %{buildroot}/var/lib/stalwart
 
 # Бинарники
-install -m 755 target/release/stalwart %{buildroot}/usr/bin/stalwart
-install -m 755 target/release/stalwart-cli %{buildroot}/usr/bin/stalwart-cli
+install -m 755 target/release/stalwart /usr/bin/stalwart
+install -m 755 target/release/stalwart-cli /usr/bin/stalwart-cli
 
 # Пример конфигурации
-install -m 700 resources/config/config.toml %{buildroot}/etc/stalwart/config.toml
+install -m 700 resources/config/config.toml /etc/stalwart/config.toml
 
 # systemd unit
-install -D -m 644 resources/systemd/stalwart-mail.service %{buildroot}/lib/systemd/system/stalwart-mail.service
+install -D -m 644 resources/systemd/stalwart-mail.service /lib/systemd/system/stalwart-mail.service
 
 %pre
 getent group stalwart >/dev/null || groupadd -r stalwart
