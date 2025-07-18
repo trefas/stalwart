@@ -38,19 +38,18 @@ cargo build --release -p stalwart-cli
 
 %install
 # Создание директорий
-install -d %{buildroot}/etc/stalwart
-install -d %{buildroot}/var/log/stalwart
-install -d %{buildroot}/var/lib/stalwart
+mkdir -p %buildroot%_bindir
+mkdir -p %buildroot%_datadir/%name
 
 # Бинарники
-install -m 755 target/release/stalwart /usr/bin/stalwart
-install -m 755 target/release/stalwart-cli /usr/bin/stalwart-cli
+install -pm755 target/release/stalwart %buildroot%_bindir/
+install -pm755 target/release/stalwart-cli %buildroot%_bindir/
 
 # Пример конфигурации
-install -m 700 resources/config/config.toml /etc/stalwart/config.toml
+install -pm700 resources/config/config.toml %buildroot%_datadir/%name/
 
 # systemd unit
-install -D -m 644 resources/systemd/stalwart-mail.service /lib/systemd/system/stalwart-mail.service
+install -D -m 644 resources/systemd/stalwart-mail.service /lib/systemd/system/
 
 %pre
 getent group stalwart >/dev/null || groupadd -r stalwart
@@ -66,16 +65,11 @@ getent passwd stalwart >/dev/null || useradd -r -g stalwart -s /sbin/nologin -c 
 %systemd_postun_with_restart stalwart-mail.service
 
 %files
-%defattr(-,stalwart,stalwart,-)
-/usr/bin/stalwart
-/usr/bin/stalwart-cli
-/etc/stalwart/config.toml
-/lib/systemd/system/stalwart-mail.service
-%dir /usr
-%dir /usr/bin
-%dir /etc/stalwart
-%dir /var/log/stalwart
-%dir /var/lib/stalwart
+%doc README.md
+%_bindir/%name
+%_bindir/stalwart-cli
+%dir %_datadir/%name
+%_datadir/%name/config.toml
 
 %changelog
 * Thu Jul 17 2025 Andrey Semenow <trefas@altlinux.org> %version-%release
