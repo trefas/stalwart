@@ -39,6 +39,7 @@ cargo build --release -p stalwart-cli
 %install
 # Создание директорий
 mkdir -p %buildroot%_bindir
+mkdir -p %buildroot%_unitdir
 mkdir -p %buildroot%_datadir/%name
 mkdir -p %buildroot%_sysconfdir/%name
 
