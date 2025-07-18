@@ -50,7 +50,7 @@ install -pm755 target/release/stalwart-cli %buildroot%_bindir/
 install -pm700 resources/config/config.toml %buildroot%_sysconfdir/%name/
 
 # systemd unit
-install -pm644 resources/systemd/stalwart-mail.service %_unitdir/
+install -pm644 resources/systemd/stalwart-mail.service %buildroot%_unitdir/
 
 %pre
 getent group stalwart >/dev/null || groupadd -r stalwart
