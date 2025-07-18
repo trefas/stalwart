@@ -66,6 +66,7 @@ getent passwd stalwart >/dev/null || useradd -r -g stalwart -s /sbin/nologin -c 
 %systemd_postun_with_restart stalwart-mail.service
 
 %files
+%defattr(-,stalwart,stalwart,-)
 /usr/bin/stalwart
 /usr/bin/stalwart-cli
 /etc/stalwart/config.toml
