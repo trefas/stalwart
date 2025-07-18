@@ -40,16 +40,17 @@ cargo build --release -p stalwart-cli
 # Создание директорий
 mkdir -p %buildroot%_bindir
 mkdir -p %buildroot%_datadir/%name
+mkdir -p %_sysconfdir/%name
 
 # Бинарники
 install -pm755 target/release/stalwart %buildroot%_bindir/
 install -pm755 target/release/stalwart-cli %buildroot%_bindir/
 
 # Пример конфигурации
-install -pm700 resources/config/config.toml %buildroot%_datadir/%name/
+install -pm700 resources/config/config.toml %_sysconfdir/%name/
 
 # systemd unit
-install -D -m 644 resources/systemd/stalwart-mail.service %_unitdir/
+install -pm644 resources/systemd/stalwart-mail.service %_unitdir/
 
 %pre
 getent group stalwart >/dev/null || groupadd -r stalwart
@@ -69,7 +70,7 @@ getent passwd stalwart >/dev/null || useradd -r -g stalwart -s /sbin/nologin -c 
 %_bindir/%name
 %_bindir/stalwart-cli
 %dir %_datadir/%name
-%_datadir/%name/config.toml
+%_sysconfdir/%name/config.toml
 
 %changelog
 * Thu Jul 17 2025 Andrey Semenow <trefas@altlinux.org> %version-%release
