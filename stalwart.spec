@@ -40,14 +40,14 @@ cargo build --release -p stalwart-cli
 # Создание директорий
 mkdir -p %buildroot%_bindir
 mkdir -p %buildroot%_datadir/%name
-mkdir -p %_sysconfdir/%name
+mkdir -p %buildroot%_sysconfdir/%name
 
 # Бинарники
 install -pm755 target/release/stalwart %buildroot%_bindir/
 install -pm755 target/release/stalwart-cli %buildroot%_bindir/
 
 # Пример конфигурации
-install -pm700 resources/config/config.toml %_sysconfdir/%name/
+install -pm700 resources/config/config.toml %buildroot%_sysconfdir/%name/
 
 # systemd unit
 install -pm644 resources/systemd/stalwart-mail.service %_unitdir/
