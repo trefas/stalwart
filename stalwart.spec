@@ -72,6 +72,7 @@ getent passwd stalwart >/dev/null || useradd -r -g stalwart -s /sbin/nologin -c 
 %_bindir/stalwart-cli
 %dir %_datadir/%name
 %_sysconfdir/%name/config.toml
+%_unitdir/stalwart-mail.service
 
 %changelog
 * Thu Jul 17 2025 Andrey Semenow <trefas@altlinux.org> %version-%release
