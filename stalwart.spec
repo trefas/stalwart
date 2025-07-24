@@ -14,6 +14,7 @@ BuildRequires:  rust-cargo /proc
 BuildRequires:  rust >= 1.70
 BuildRequires:  gcc
 BuildRequires:  glibc-devel
+BuildRequires:  libstdc++-devel
 BuildRequires:  pkgconfig
 BuildRequires:  clang-devel
 BuildRequires:  libclang19
